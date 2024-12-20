@@ -20,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        /*super.onCreate(savedInstanceState);
+
+        super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -28,41 +29,19 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
 
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+    @Override
+    protected void onStart() {
+        super.onStart();
 
-        //recyclerView = findViewById(R.id.rvFriends);
-        recyclerView.setHasFixedSize(true);
-        myDataSet = new String[]{"first try"};
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });*/
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-
-        //recyclerView = findViewById(R.id.rvFriends);
-        recyclerView.setHasFixedSize(true);
-        myDataSet = new String[]{"first try"};
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
-
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        //ayoutManager = new LinearLayoutManager(this);
+        //recyclerView.setLayoutManager(layoutManager);
         //mAdapter = new MyAdapter(myDataSet);
-        recyclerView.setAdapter(mAdapter);
-
-
+        //recyclerView.setAdapter(mAdapter);
         gotoLoginFragment();
     }
+
     private void gotoLoginFragment() {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayOutMain, new LoginFragment());
