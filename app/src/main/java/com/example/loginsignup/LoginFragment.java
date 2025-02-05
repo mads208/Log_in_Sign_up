@@ -134,7 +134,7 @@ public class LoginFragment extends Fragment {
         ForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  gotoForgotPasswordFragment();
+               gotoForgotPasswordFragment();
 
             }
         });
