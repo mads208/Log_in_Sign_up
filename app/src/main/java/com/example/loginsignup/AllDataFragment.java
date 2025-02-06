@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,9 +30,10 @@ import java.util.ArrayList;
 public class AllDataFragment extends Fragment {
 
     private FirebaseServices fbs;
-    private ArrayList<DataUser> rests;
-    private RecyclerView rvRests;
+    private ArrayList<DataUser> users;
+    private RecyclerView rvUsers;
     private DataUserAdapter adapter;
+    private TextView gotoAddData;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -85,12 +88,12 @@ public class AllDataFragment extends Fragment {
 
 
         fbs = FirebaseServices.getInstance();
-        rests = new ArrayList<>();
-        rvRests = getView().findViewById(R.id.rvDataUserFragment);
-        adapter = new DataUserAdapter(getActivity(), rests);
-        rvRests.setAdapter(adapter);
-        rvRests.setHasFixedSize(true);
-        rvRests.setLayoutManager(new LinearLayoutManager(getActivity()));
+        users = new ArrayList<>();
+        rvUsers = getView().findViewById(R.id.rvDataUserFragment);
+        adapter = new DataUserAdapter(getActivity(), users);
+        rvUsers.setAdapter(adapter);
+        rvUsers.setHasFixedSize(true);
+        rvUsers.setLayoutManager(new LinearLayoutManager(getActivity()));
         fbs.getFire().collection("restaurants").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -98,7 +101,7 @@ public class AllDataFragment extends Fragment {
                 for (DocumentSnapshot dataSnapshot: queryDocumentSnapshots.getDocuments()){
                     DataUser rest = dataSnapshot.toObject(DataUser.class);
 
-                    rests.add(rest);
+                    users.add(rest);
                 }
 
                 adapter.notifyDataSetChanged();
@@ -110,7 +113,19 @@ public class AllDataFragment extends Fragment {
                 Log.e("AllRestaurantsFragment", e.getMessage());
             }
         });
+       /* gotoAddData.findViewById(R.id.AddDataAllData);
+        gotoAddData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GotoAddData();
+            }
+        });*/
 
 
+    }
+    private void GotoAddData() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayOutMain, new AddDataFragment());
+        ft.commit();
     }
 }

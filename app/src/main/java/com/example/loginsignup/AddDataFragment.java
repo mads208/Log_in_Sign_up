@@ -4,12 +4,14 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -27,6 +29,8 @@ public class AddDataFragment extends Fragment {
     private EditText etTaskDays;
     private Button Addbtn;
     private FirebaseServices fbs;
+    private TextView GoToAllData;
+    private TextView GoToLogin;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,6 +52,7 @@ public class AddDataFragment extends Fragment {
     }
 
     private void connectComponents() {
+
         etMusicGenre = getView().findViewById(R.id.etMusicGenreAdd);
         etGoal = getView().findViewById(R.id.etGoalAdd);
         etTaskDays = getView().findViewById(R.id.etTaskDaysAdd);
@@ -85,6 +90,24 @@ public class AddDataFragment extends Fragment {
             }
 
         });
+        GoToAllData = getView().findViewById(R.id.GoToAllDataAddData);
+        GoToAllData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoAllData();
+
+            }
+        });
+        GoToLogin = getView().findViewById(R.id.gotoLoginAddData);
+        GoToLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GotoLogin();
+
+            }
+        });
+
+
     }
 
     /**
@@ -119,5 +142,15 @@ public class AddDataFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_data, container, false);
+    }
+    private void gotoAllData() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayOutMain, new AllDataFragment());
+        ft.commit();
+    }
+    private void GotoLogin() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayOutMain, new LoginFragment());
+        ft.commit();
     }
 }

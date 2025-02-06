@@ -32,6 +32,7 @@ public class LoginFragment extends Fragment {
     private TextView ForgotPassword;
     private TextView GoToAdd;
 
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -138,6 +139,7 @@ public class LoginFragment extends Fragment {
 
             }
         });
+
     }
 
     private void gotoAddDataFragment() {
@@ -156,4 +158,5 @@ public class LoginFragment extends Fragment {
         ft.replace(R.id.frameLayOutMain, new ForgotPasswordFragment());
         ft.commit();
     }
+
 }
