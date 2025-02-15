@@ -85,6 +85,13 @@ public class LoginFragment extends Fragment {
 
         fbs = FirebaseServices.getInstance();
         ForgotPassword = getView().findViewById(R.id.ForgotPasswordLogin);
+        ForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoForgotPasswordFragment();
+
+            }
+        });
         etUsername = getView().findViewById(R.id.etUsernameLogin);
         etPassword = getView().findViewById(R.id.etPasswordLogin);
         btnLogin = getView().findViewById(R.id.btnLoginLogin);
@@ -110,7 +117,9 @@ public class LoginFragment extends Fragment {
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
                 if (username.trim().isEmpty() && password.trim().isEmpty()) {
-                    Toast.makeText(getActivity(), "some fields are empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),
+                            "some fields are empty",
+                            Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -123,22 +132,17 @@ public class LoginFragment extends Fragment {
                         return;
                     }
                 }).addOnFailureListener(new OnFailureListener() {
+
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getActivity(), " fields", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), " fail", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 });
 
             }
         });
-        ForgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               gotoForgotPasswordFragment();
 
-            }
-        });
 
     }
 

@@ -99,8 +99,8 @@ public class AllDataFragment extends Fragment {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
                 for (DocumentSnapshot dataSnapshot: queryDocumentSnapshots.getDocuments()){
-                    DataUser rest = dataSnapshot.toObject(DataUser.class);
-                    users.add(rest);
+                    DataUser user = dataSnapshot.toObject(DataUser.class);
+                    users.add(user);
                 }
 
                 adapter.notifyDataSetChanged();

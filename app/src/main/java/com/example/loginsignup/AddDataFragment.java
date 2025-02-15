@@ -72,13 +72,15 @@ public class AddDataFragment extends Fragment {
 
                 }
 
-                DataUser data = new DataUser(TaskDays,Goal,MusicGenre,"");
+                DataUser userdata = new DataUser(TaskDays,Goal,MusicGenre);
 
                 //fbs.getAuth().createUserWithEmailAndPassword(user, pass);
 
-                fbs.getFire().collection("data").add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                fbs.getFire().collection("data").add(userdata).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(getActivity(), "success", Toast.LENGTH_SHORT).show();
+                        return;
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <!-- White color with 90% opacity -->
+    <solid android:color="#629123"/>
+
+    <!-- Define a fixed size (optional, can be adjusted in layout) -->
+    <size android:width="150dp" android:height="150dp"/>
+
+</shape>

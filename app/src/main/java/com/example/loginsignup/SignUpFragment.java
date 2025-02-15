@@ -98,7 +98,7 @@ public class SignUpFragment extends Fragment {
                 // data validation
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
-                if(username.trim().isEmpty() && password.trim().isEmpty()){
+                if(username.trim().isEmpty() || password.trim().isEmpty()){
                     Toast.makeText(getActivity(), "some fields are empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -115,7 +115,7 @@ public class SignUpFragment extends Fragment {
                     @Override
                     public void onFailure(@NonNull Exception e) {
 
-                        Toast.makeText(getActivity(), " fields", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), " fail", Toast.LENGTH_SHORT).show();
                         return;
 
                     }

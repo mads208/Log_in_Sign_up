@@ -19,9 +19,9 @@ public class DataUserAdapter extends RecyclerView.Adapter<DataUserAdapter.MyView
 
 
 
-    public DataUserAdapter(Context context, ArrayList<DataUser> restList) {
+    public DataUserAdapter(Context context, ArrayList<DataUser> userList) {
         this.context = context;
-        this.userList = restList;
+        this.userList = userList;
         this.fbs = FirebaseServices.getInstance();
     }
 
