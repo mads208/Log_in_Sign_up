@@ -1,6 +1,9 @@
 package com.example.loginsignup;
 
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+
     }
 
     @Override
@@ -40,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         //mAdapter = new MyAdapter(myDataSet);
         //recyclerView.setAdapter(mAdapter);
         gotoLoginFragment();
+
     }
 
     private void gotoLoginFragment() {
@@ -47,4 +53,5 @@ public class MainActivity extends AppCompatActivity {
         ft.replace(R.id.frameLayOutMain, new LoginFragment());
         ft.commit();
     }
+
 }

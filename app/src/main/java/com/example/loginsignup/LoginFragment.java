@@ -31,6 +31,7 @@ public class LoginFragment extends Fragment {
     private FirebaseServices fbs;
     private TextView ForgotPassword;
     private TextView GoToAdd;
+    private TextView GoToAboutUS;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -110,6 +111,14 @@ public class LoginFragment extends Fragment {
 
             }
         });
+        GoToAboutUS = getView().findViewById(R.id.AboutUsLogin);
+        GoToAboutUS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoAboutUSFragment();
+
+            }
+        });
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,6 +169,11 @@ public class LoginFragment extends Fragment {
     private void gotoForgotPasswordFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayOutMain, new ForgotPasswordFragment());
+        ft.commit();
+    }
+    private void gotoAboutUSFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayOutMain, new AboutUsFragment());
         ft.commit();
     }
 

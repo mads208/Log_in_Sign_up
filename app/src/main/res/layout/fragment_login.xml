@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3C6E41"
+    android:background="#2F4333"
     tools:context=".LoginFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,25 +17,27 @@
             android:id="@+id/background"
             android:layout_width="589dp"
             android:layout_height="978dp"
-            android:layout_marginTop="-30dp"
+            android:layout_marginTop="16dp"
             android:contentDescription="background"
-            android:src="@drawable/backgroundblues"
+            android:src="@drawable/greenflow"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/square" />
 
         <ImageView
             android:id="@+id/blues"
-            android:layout_width="456dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="68dp"
+            android:layout_width="408dp"
+            android:layout_height="819dp"
+            android:layout_marginStart="88dp"
             android:layout_marginTop="-30dp"
-            android:contentDescription="blues "
-            android:src="@drawable/blues"
+            android:contentDescription="blues"
+            android:src="@drawable/blues2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/background"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.724" />
 
         <ImageView
             android:id="@+id/circle9"
@@ -190,37 +192,69 @@
             android:textColorHint="#020202"
             android:textColorLink="#181111"
             app:iconTint="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/square"
             app:layout_constraintStart_toStartOf="@+id/square"
             app:layout_constraintTop_toBottomOf="@+id/etPasswordLogin"
             app:rippleColor="#0F0B0B" />
 
+
         <TextView
             android:id="@+id/ForgotPasswordLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="212dp"
+            android:layout_width="160dp"
+            android:layout_height="33dp"
+            android:layout_marginBottom="264dp"
             android:background="@drawable/rounded_text"
-            android:text="   Forgot Password ?   "
+            android:backgroundTint="#B6D19C"
+            android:gravity="center"
+            android:text="Forgot Password?"
+            android:textAlignment="center"
             android:textColor="#29311F"
+            android:textStyle="bold"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.468"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tvSignupLinkLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginBottom="64dp"
+            android:layout_width="120dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/rounded_text"
-            android:backgroundTint="#91A878"
-            android:text="  Sign up ...   "
+            android:backgroundTint="#B6D19C"
+            android:gravity="center"
+            android:text="Sign up ..."
+            android:textAlignment="center"
+            android:textStyle="bold"
+
             android:textColor="#29311F"
             app:layout_constraintBottom_toTopOf="@+id/ForgotPasswordLogin"
             app:layout_constraintStart_toStartOf="@+id/ForgotPasswordLogin" />
+
+        <TextView
+            android:id="@+id/AboutUsLogin"
+            android:layout_width="155dp"
+            android:layout_height="40dp"
+            android:background="@drawable/rounded_text"
+            android:backgroundTint="#D4F2D4"
+            android:text="About us"
+            android:textColor="#181111"
+            android:textSize="24sp"
+            android:textStyle="bold"
+
+            android:gravity="center"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ForgotPasswordLogin"
+            app:layout_constraintVertical_bias="0.813" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
