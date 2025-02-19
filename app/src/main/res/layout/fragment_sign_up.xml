@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2F4333"
+    android:background="@drawable/greenflow"
     tools:context=".SignUpFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,222 +14,274 @@
 
 
         <ImageView
-            android:id="@+id/background"
-            android:layout_width="589dp"
-            android:layout_height="978dp"
-            android:layout_marginTop="16dp"
-            android:contentDescription="background"
-            android:src="@drawable/greenflow"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/square" />
-
-
-        <ImageView
             android:id="@+id/blues"
-            android:layout_width="408dp"
-            android:layout_height="819dp"
-            android:layout_marginStart="88dp"
-            android:layout_marginTop="-30dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:contentDescription="blues"
             android:src="@drawable/blues2"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.724" />
-
+            app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
-            android:id="@+id/circle18"
-            android:layout_width="73dp"
-            android:layout_height="79dp"
+            android:id="@+id/circle9"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="112dp"
+            android:layout_marginEnd="183dp"
+            android:layout_marginBottom="63dp"
             android:src="@drawable/dark_circle"
+            app:layout_constraintBottom_toTopOf="@+id/etPasswordSignup"
+            app:layout_constraintEnd_toStartOf="@+id/circle7"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/circle19"
-            android:layout_width="63dp"
-            android:layout_height="71dp"
+            android:id="@+id/circle1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="116dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="4dp"
             android:src="@drawable/circle"
+            app:layout_constraintBottom_toBottomOf="@+id/circle9"
+            app:layout_constraintEnd_toStartOf="@+id/etUsernameSignup"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/circle9" />
 
         <ImageView
             android:id="@+id/square"
-            android:layout_width="0dp"
-            android:layout_height="750dp"
+            android:layout_width="301dp"
+            android:layout_height="711dp"
             android:layout_marginStart="55dp"
-            android:layout_marginEnd="57dp"
-            android:layout_marginBottom="179dp"
+            android:layout_marginEnd="55dp"
             android:contentDescription="square"
             android:src="@drawable/rounded_square"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/blues" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/circle"
-            android:layout_width="44dp"
-            android:layout_height="46dp"
+            android:id="@+id/circle8"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginStart="57dp"
-            android:layout_marginTop="115dp"
+            android:layout_marginTop="130dp"
+            android:layout_marginEnd="175dp"
+            android:layout_marginBottom="-18dp"
             android:src="@drawable/dark_circle"
+            app:layout_constraintBottom_toTopOf="@+id/etUsernameSignup"
+            app:layout_constraintEnd_toStartOf="@+id/circle7"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/circle6"
-            android:layout_width="47dp"
-            android:layout_height="58dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="104dp"
-            android:src="@drawable/circle_dark"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/circle12"
-            android:layout_width="63dp"
+            android:id="@+id/circle2"
+            android:layout_width="55dp"
             android:layout_height="61dp"
-            android:layout_marginTop="47dp"
-            android:layout_marginEnd="58dp"
-            android:src="@drawable/dark_circle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/circle13"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_marginStart="64dp"
             android:layout_marginTop="52dp"
-            android:layout_marginEnd="64dp"
-            android:src="@drawable/circle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/circle14"
-            android:layout_width="54dp"
-            android:layout_height="59dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="82dp"
-            android:src="@drawable/dark_circle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/circle15"
-            android:layout_width="45dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="72dp"
-            android:layout_marginEnd="88dp"
+            android:layout_marginEnd="180dp"
+            android:layout_marginBottom="5dp"
             android:src="@drawable/circle_dark"
+            app:layout_constraintBottom_toBottomOf="@+id/etUsernameSignup"
+            app:layout_constraintEnd_toStartOf="@+id/circle11"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/circle3" />
+
+        <ImageView
+            android:id="@+id/circle11"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="47dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginBottom="56dp"
+            android:src="@drawable/dark_circle"
+            app:layout_constraintBottom_toTopOf="@+id/etUsernameSignup"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/circle2"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/circle16"
+            android:id="@+id/circle3"
             android:layout_width="70dp"
-            android:layout_height="75dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="90dp"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/circle"
+            app:layout_constraintBottom_toTopOf="@+id/circle4"
+            app:layout_constraintEnd_toEndOf="@+id/circle11"
+            app:layout_constraintStart_toStartOf="@+id/circle11"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/circle7"
+            android:layout_width="47dp"
+            android:layout_height="126dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="75dp"
+            android:layout_marginBottom="360dp"
+            android:src="@drawable/dark_circle"
+            app:layout_constraintBottom_toTopOf="@+id/ForgotPasswordLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/circle8"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/circle4"
+            android:layout_width="68dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="-20dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="250dp"
+            android:src="@drawable/circle_dark"
+            app:layout_constraintBottom_toTopOf="@+id/circle10"
+            app:layout_constraintEnd_toEndOf="@+id/circle7"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/circle7"
+            app:layout_constraintTop_toBottomOf="@+id/circle3" />
+
+        <ImageView
+            android:id="@+id/circle10"
+            android:layout_width="89dp"
+            android:layout_height="53dp"
             android:layout_marginEnd="28dp"
-            android:layout_marginBottom="388dp"
+            android:layout_marginBottom="435dp"
             android:src="@drawable/dark_circle"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnSignupSignup"
+            app:layout_constraintTop_toBottomOf="@+id/circle4" />
 
         <ImageView
-            android:id="@+id/circle17"
-            android:layout_width="58dp"
-            android:layout_height="58dp"
-            android:layout_marginTop="392dp"
+            android:id="@+id/circle5"
+            android:layout_width="64dp"
+            android:layout_height="55dp"
             android:layout_marginEnd="32dp"
+            android:layout_marginBottom="397dp"
             android:src="@drawable/circle_dark"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/btnSignupSignup"
+            app:layout_constraintTop_toBottomOf="@+id/etUsernameSignup"
+            app:layout_constraintVertical_bias="1.0" />
+
 
         <EditText
             android:id="@+id/etUsernameSignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="164dp"
-            android:layout_marginBottom="42dp"
+            android:layout_marginEnd="45dp"
+            android:layout_marginBottom="220dp"
             android:ems="10"
             android:hint="Email / UserName ..."
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
-            app:layout_constraintBottom_toTopOf="@+id/etPasswordSignup"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toTopOf="@+id/BackToLoginSignup"
+            app:layout_constraintEnd_toEndOf="@+id/square"
+            app:layout_constraintStart_toEndOf="@+id/circle1"
+            app:layout_constraintTop_toBottomOf="@+id/circle8" />
 
         <EditText
             android:id="@+id/etPasswordSignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="81dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginBottom="450dp"
             android:ems="10"
             android:hint="Password ..."
             android:inputType="textPassword"
             android:minHeight="48dp"
-            app:layout_constraintBottom_toTopOf="@+id/btnSignupSignup"
-            app:layout_constraintStart_toStartOf="@+id/etUsernameSignup"
-            app:layout_constraintTop_toBottomOf="@+id/etUsernameSignup" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/square"
+            app:layout_constraintTop_toBottomOf="@+id/circle9" />
 
         <Button
             android:id="@+id/btnSignupSignup"
-            android:layout_width="200dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="414dp"
+            android:layout_width="0dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="105dp"
+            android:layout_marginTop="350dp"
+            android:layout_marginEnd="17dp"
+            android:layout_marginBottom="318dp"
             android:backgroundTint="#D4F2D4"
             android:drawableTint="#1B1A1A"
             android:text="Sign up"
             android:textColor="#2A562C"
             android:textColorHint="#020202"
             android:textColorLink="#181111"
-            app:iconTint="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/square"
-            app:layout_constraintStart_toStartOf="@+id/square"
-            app:layout_constraintTop_toBottomOf="@+id/etPasswordSignup"
+            app:iconTint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="@+id/square"
+            app:layout_constraintEnd_toStartOf="@+id/circle5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/circle7"
+            app:layout_constraintVertical_bias="0.0"
             app:rippleColor="#0F0B0B" />
 
         <TextView
             android:id="@+id/ForgotPasswordLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="200dp"
-            android:background="#91A878"
+            android:layout_width="-10000dp"
+            android:layout_height="-1000dp"
+            android:layout_marginBottom="40dp"
+            android:backgroundTint="#B6D19C"
+            android:gravity="center"
             android:text=""
+            android:textAlignment="center"
             android:textColor="#29311F"
-            app:layout_constraintBottom_toBottomOf="parent"
+
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/AboutUsLogin"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.351"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/circle7" />
 
         <TextView
             android:id="@+id/BackToLoginSignup"
-            android:layout_width="130dp"
-            android:layout_height="33dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginBottom="68dp"
+            android:layout_width="150dp"
+            android:layout_height="34dp"
+            android:layout_marginBottom="285dp"
             android:background="@drawable/rounded_text"
-            android:backgroundTint="#91A878"
-            android:text="Back to login ..."
+            android:backgroundTint="#B6D19C"
+            android:gravity="center"
+            android:text="Back to Login"
+            android:textAlignment="center"
+
             android:textColor="#29311F"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etUsernameSignup" />
+
+        <TextView
+            android:id="@+id/AboutUsLogin"
+            android:layout_width="152dp"
+            android:layout_height="42dp"
+            android:layout_marginBottom="130dp"
+            android:background="@drawable/rounded_text"
+            android:backgroundTint="#D4F2D4"
             android:gravity="center"
+            android:text="About us"
             android:textAlignment="center"
-            app:layout_constraintBottom_toTopOf="@+id/ForgotPasswordLogin"
-            app:layout_constraintStart_toStartOf="@+id/ForgotPasswordLogin"/>
+
+            android:textColor="#181111"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ForgotPasswordLogin" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

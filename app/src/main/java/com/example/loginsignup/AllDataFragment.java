@@ -105,6 +105,9 @@ public class AllDataFragment extends Fragment {
 
                 adapter.notifyDataSetChanged();
             }
+
+
+
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {

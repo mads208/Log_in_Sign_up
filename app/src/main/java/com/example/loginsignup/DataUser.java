@@ -4,13 +4,13 @@ public class DataUser {
     private String MusicGenre;
     private String Goal;
     private String TaskDays;
-   // private String photo;
+    private String photo;
 
-    public DataUser(String musicGenre, String goal, String taskDays) {
+    public DataUser(String musicGenre, String goal, String taskDays, String photo) {
         MusicGenre = musicGenre;
         Goal = goal;
         TaskDays = taskDays;
-        //this.photo = photo;
+        this.photo = photo;
     }
 
     public String getMusicGenre() {
@@ -37,11 +37,11 @@ public class DataUser {
         TaskDays = taskDays;
     }
 
-    /*public String getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
     public void setPhoto(String photo) {
         this.photo = photo;
-    }*/
+    }
 }

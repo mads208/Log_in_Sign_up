@@ -1,16 +1,20 @@
 package com.example.loginsignup;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +28,8 @@ import com.google.firebase.firestore.DocumentReference;
  * create an instance of this fragment.
  */
 public class AddDataFragment extends Fragment {
+    private static final int GALLARY_REQUEST_CODE = 123;
+
     private EditText etMusicGenre;
     private EditText etGoal;
     private EditText etTaskDays;
@@ -31,6 +37,7 @@ public class AddDataFragment extends Fragment {
     private FirebaseServices fbs;
     private TextView GoToAllData;
     private TextView GoToLogin;
+    private ImageView img;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -56,36 +63,64 @@ public class AddDataFragment extends Fragment {
         etMusicGenre = getView().findViewById(R.id.etMusicGenreAdd);
         etGoal = getView().findViewById(R.id.etGoalAdd);
         etTaskDays = getView().findViewById(R.id.etTaskDaysAdd);
-        fbs = FirebaseServices.getInstance();
+        fbs =  FirebaseServices.getInstance();
+        img = getView().findViewById(R.id.imageViewProfile);
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gallerIntent =new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(gallerIntent,GALLARY_REQUEST_CODE);
+
+            }
+        });
+
+
+        /*img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri selectedImageUri=fbs.getSelectedImageURL();
+                String imageUri = "";
+                if(selectedImageUri!=null)
+                    imageUri =selectedImageUri.toString();
+            }
+        });*/
         Addbtn = getView().findViewById(R.id.AddAddbtn);
         Addbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String MusicGenre,Goal,TaskDays;
+                String MusicGenre,Goal,TaskDays,photo;
                 TaskDays = etTaskDays.getText().toString();
                 Goal = etGoal.getText().toString();
                 MusicGenre = etMusicGenre.getText().toString();
-
-                if( TaskDays.trim().isEmpty() || Goal.trim().isEmpty() || MusicGenre.trim().isEmpty()){
-                    Toast.makeText(getActivity(), "some fields are empty", Toast.LENGTH_SHORT).show();
-                    return;
-
+                Uri selectedImageUri=fbs.getSelectedImageURL();
+                String imageUri = "";
+                if(selectedImageUri!=null) {
+                    imageUri = selectedImageUri.toString();
                 }
 
-                DataUser userdata = new DataUser(TaskDays,Goal,MusicGenre);
+
+                if( TaskDays.trim().isEmpty() || Goal.trim().isEmpty() || MusicGenre.trim().isEmpty() ){
+                    Toast.makeText(getActivity(), "some fields are empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                DataUser userdata = new DataUser(TaskDays,Goal,MusicGenre, imageUri.toString() );
 
                 //fbs.getAuth().createUserWithEmailAndPassword(user, pass);
 
                 fbs.getFire().collection("data").add(userdata).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(getActivity(), "success", Toast.LENGTH_SHORT).show();
-                        return;
-
+                        Toast.makeText(getActivity(), "welcome", Toast.LENGTH_SHORT).show();
+                        FragmentTransaction transaction= getParentFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frameLayOutMain ,new LoginFragment());
+                        transaction.commit();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getActivity(), "fail", Toast.LENGTH_SHORT).show();
+                        return;
 
                     }
                 });
@@ -154,5 +189,15 @@ public class AddDataFragment extends Fragment {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayOutMain, new LoginFragment());
         ft.commit();
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == GALLARY_REQUEST_CODE && resultCode == getActivity().RESULT_OK && data != null) {
+            Uri selectedImageUri = data.getData();
+            img.setImageURI(selectedImageUri);
+            Utils.getInstance().uploadImage(getActivity(), selectedImageUri);
+        }
     }
 }
