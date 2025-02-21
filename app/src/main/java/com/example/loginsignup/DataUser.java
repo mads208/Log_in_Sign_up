@@ -6,6 +6,9 @@ public class DataUser {
     private String TaskDays;
     private String photo;
 
+    public DataUser() {
+    }
+
     public DataUser(String musicGenre, String goal, String taskDays, String photo) {
         MusicGenre = musicGenre;
         Goal = goal;

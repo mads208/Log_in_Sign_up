@@ -112,9 +112,8 @@ public class AddDataFragment extends Fragment {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Toast.makeText(getActivity(), "welcome", Toast.LENGTH_SHORT).show();
-                        FragmentTransaction transaction= getParentFragmentManager().beginTransaction();
-                        transaction.replace(R.id.frameLayOutMain ,new LoginFragment());
-                        transaction.commit();
+
+                        gotoAllData();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -124,6 +123,7 @@ public class AddDataFragment extends Fragment {
 
                     }
                 });
+
             }
 
         });

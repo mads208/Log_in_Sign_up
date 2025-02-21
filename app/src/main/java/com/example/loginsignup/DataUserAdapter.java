@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,11 +49,15 @@ public class DataUserAdapter extends RecyclerView.Adapter<DataUserAdapter.MyView
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView tvMusicGenre, tvTaskDays;
+        TextView tvMusicGenre, tvTaskDays , tvGoalItem;
+        ImageView imgItemlogin ;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tvMusicGenre=itemView.findViewById(R.id.tvMusicGenreUserItem);
             tvTaskDays=itemView.findViewById(R.id.tvTaskDaysUserItem);
+            tvGoalItem=itemView.findViewById(R.id.tvGoalItem);
+            imgItemlogin =itemView.findViewById(R.id.imgItem);
+
 
         }
     }
