@@ -57,8 +57,6 @@ public class DataUserAdapter extends RecyclerView.Adapter<DataUserAdapter.MyView
             tvTaskDays=itemView.findViewById(R.id.tvTaskDaysUserItem);
             tvGoalItem=itemView.findViewById(R.id.tvGoalItem);
             imgItemlogin =itemView.findViewById(R.id.imgItem);
-
-
         }
     }
 }

@@ -1,6 +1,9 @@
 package com.example.loginsignup;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -9,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +25,13 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import org.jetbrains.annotations.Nullable;
+
+import java.io.IOException;
+import java.util.UUID;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,7 +39,7 @@ import com.google.firebase.firestore.DocumentReference;
  * create an instance of this fragment.
  */
 public class AddDataFragment extends Fragment {
-    private static final int GALLARY_REQUEST_CODE = 123;
+    private static final int GALLARY_REQUEST_CODE = 100;
 
     private EditText etMusicGenre;
     private EditText etGoal;
@@ -38,6 +49,7 @@ public class AddDataFragment extends Fragment {
     private TextView GoToAllData;
     private TextView GoToLogin;
     private ImageView img;
+    private String imageStr;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -200,4 +212,7 @@ public class AddDataFragment extends Fragment {
             Utils.getInstance().uploadImage(getActivity(), selectedImageUri);
         }
     }
+
+
+
 }

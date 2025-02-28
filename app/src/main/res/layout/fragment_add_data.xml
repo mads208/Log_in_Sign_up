@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/greenline"
     tools:context=".AddDataFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -11,25 +12,45 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="27dp"
+            android:layout_marginBottom="40dp"
+            android:src="@drawable/rounded_rectangle"
+            app:layout_constraintBottom_toTopOf="@+id/AddAddbtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
         <Button
             android:id="@+id/AddAddbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="166dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="27dp"
+            android:backgroundTint="#B6D19C"
             android:text="Add"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textColor="#2B432C"
+            app:layout_constraintBottom_toTopOf="@+id/GoToAllDataAddData"
+            app:layout_constraintStart_toStartOf="@+id/GoToAllDataAddData"
+            app:layout_constraintTop_toBottomOf="@+id/etGoalAdd" />
 
         <EditText
             android:id="@+id/etTaskDaysAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="56dp"
+            android:layout_marginBottom="64dp"
             android:ems="10"
             android:hint="Your task days ..."
             android:inputType="text"
             android:minHeight="48dp"
+            app:layout_constraintBottom_toTopOf="@+id/etGoalAdd"
             app:layout_constraintStart_toStartOf="@+id/etMusicGenreAdd"
             app:layout_constraintTop_toBottomOf="@+id/etMusicGenreAdd" />
 
@@ -37,53 +58,69 @@
             android:id="@+id/etMusicGenreAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="196dp"
+            android:layout_marginBottom="56dp"
             android:ems="10"
             android:hint="Your music genre ..."
             android:inputType="text"
             android:minHeight="48dp"
+            app:layout_constraintBottom_toTopOf="@+id/etTaskDaysAdd"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewProfile" />
 
         <EditText
             android:id="@+id/etGoalAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
+            android:layout_marginBottom="79dp"
             android:ems="10"
             android:hint="Your Goal ..."
             android:inputType="text"
             android:minHeight="48dp"
-            app:layout_constraintStart_toStartOf="@+id/etTaskDaysAdd"
+            app:layout_constraintBottom_toTopOf="@+id/AddAddbtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etTaskDaysAdd" />
 
         <TextView
             android:id="@+id/GoToAllDataAddData"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginBottom="96dp"
-            android:text="View All Data"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/AddAddbtn" />
+            android:layout_width="137dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="19dp"
+            android:background="@drawable/rounded_text"
+            android:backgroundTint="#B6D19C"
+            android:gravity="center"
+            android:text="  View All Data  "
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/gotoLoginAddData"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/AddAddbtn" />
 
         <TextView
             android:id="@+id/gotoLoginAddData"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="45dp"
-            android:text="Back to Log in"
+            android:layout_width="141dp"
+            android:layout_height="37dp"
+            android:layout_marginBottom="26dp"
+
+            android:background="@drawable/rounded_text"
+            android:backgroundTint="#B6D19C"
+            android:gravity="center"
+            android:text="  Back to Log in  "
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/GoToAllDataAddData" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/GoToAllDataAddData" />
+
         <ImageView
             android:id="@+id/imageViewProfile"
             android:layout_width="193dp"
-            android:layout_height="96dp"
+            android:layout_height="0dp"
             android:layout_marginTop="81dp"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="19dp"
             android:src="@drawable/blank_profile_picture"
+            app:layout_constraintBottom_toTopOf="@+id/etMusicGenreAdd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
