@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/greenline"
+    tools:context=".HomePage" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="292dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="-110dp"
+            android:layout_marginBottom="45dp"
+            android:src="@drawable/journalicon"
+            app:layout_constraintBottom_toTopOf="@+id/imageView13"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="264dp"
+            android:layout_height="319dp"
+            android:layout_marginStart="-15dp"
+            android:layout_marginTop="96dp"
+            android:layout_marginBottom="84dp"
+            android:src="@drawable/dayrateicon"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.394" />
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="231dp"
+            android:layout_height="298dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="170dp"
+            android:src="@drawable/schedualicon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView5" />
+
+        <ImageView
+            android:id="@+id/imageView13"
+            android:layout_width="330dp"
+            android:layout_height="357dp"
+            android:layout_marginEnd="108dp"
+            android:layout_marginBottom="-35dp"
+            android:src="@drawable/musicicon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
