@@ -2,11 +2,19 @@ package com.example.loginsignup;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+
+
+import org.jetbrains.annotations.Nullable;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +31,15 @@ public class HomePage extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private ImageView journal;
+    private ImageView dailyrate;
+    private ImageView schedule;
+    private ImageView playlist;
+    private ImageView journalIcon;
+
+
+
+
 
     public HomePage() {
         // Required empty public constructor
@@ -61,4 +78,111 @@ public class HomePage extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home_page, container, false);
     }
+    public void onStart() {
+        super.onStart();
+        journal = getView().findViewById(R.id.journaling);
+        Animation rotateAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_once);
+
+        journal.setOnClickListener(v -> {
+            journal.startAnimation(rotateAnimation);
+
+            // Wait for animation to finish before switching fragment
+            rotateAnimation.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {}
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.frameLayOutMain, new LoginFragment()); // Replace with your actual fragment
+                    ft.commit();
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {}
+            });
+        });
+        dailyrate = getView().findViewById(R.id.DayRating);
+
+        dailyrate.setOnClickListener(v -> {
+            dailyrate.startAnimation(rotateAnimation);
+
+            // Wait for animation to finish before switching fragment
+            rotateAnimation.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {}
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.frameLayOutMain, new LoginFragment()); // Replace with your target fragment
+                    ft.commit();
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {}
+            });
+        });
+        schedule = getView().findViewById(R.id.schedules);
+
+        schedule.setOnClickListener(v -> {
+            schedule.startAnimation(rotateAnimation);
+
+            // Wait for animation to finish before switching fragment
+            rotateAnimation.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {}
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.frameLayOutMain, new TasksPage()); // Replace with your target fragment
+                    ft.commit();
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {}
+            });
+        });
+        playlist = getView().findViewById(R.id.playlists1);
+
+        playlist.setOnClickListener(v -> {
+            playlist.startAnimation(rotateAnimation);
+
+            // Wait for animation to finish before switching fragment
+            rotateAnimation.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {}
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.frameLayOutMain, new LoginFragment()); // Replace with your target fragment
+                    ft.commit();
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {}
+            });
+        });
+
+
+
+    }
+
+
+
+    private void LoginFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayOutMain, new LoginFragment());
+        ft.commit();
+    }
+    private void GoToTaskFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayOutMain, new TasksPage());
+        ft.commit();
+    }
+
+
+
 }

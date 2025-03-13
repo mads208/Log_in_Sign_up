@@ -11,52 +11,138 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/dayrate"
+            android:layout_width="96dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="30dp"
+
+            android:layout_marginBottom="55dp"
+            android:background="@drawable/rounded_text"
+            android:backgroundTint="#B6D19C"
+            android:gravity="center"
+            android:text="daily rating"
+            android:textAlignment="center"
+            android:textColor="#29311F"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/playlists1"
+            app:layout_constraintEnd_toStartOf="@+id/schedules"
+            app:layout_constraintStart_toStartOf="@+id/DayRating"
+            app:layout_constraintTop_toBottomOf="@+id/DayRating" />
+
+
         <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="292dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="140dp"
-            android:layout_marginTop="-110dp"
-            android:layout_marginBottom="45dp"
+            android:id="@+id/journaling"
+            android:layout_width="186dp"
+            android:layout_height="194dp"
+            android:layout_marginStart="92dp"
+            android:layout_marginBottom="280dp"
             android:src="@drawable/journalicon"
-            app:layout_constraintBottom_toTopOf="@+id/imageView13"
+            app:layout_constraintBottom_toTopOf="@+id/schedule"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.879"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="264dp"
-            android:layout_height="319dp"
-            android:layout_marginStart="-15dp"
-            android:layout_marginTop="96dp"
-            android:layout_marginBottom="84dp"
+            android:id="@+id/DayRating"
+            android:layout_width="201dp"
+            android:layout_height="179dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="130dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginBottom="324dp"
             android:src="@drawable/dayrateicon"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView12"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBottom_toTopOf="@+id/playlist"
+            app:layout_constraintEnd_toStartOf="@+id/journal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.394" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView12"
-            android:layout_width="231dp"
-            android:layout_height="298dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="170dp"
+            android:id="@+id/schedules"
+            android:layout_width="168dp"
+            android:layout_height="157dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="-45dp"
+            android:layout_marginBottom="207dp"
             android:src="@drawable/schedualicon"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/imageView5" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/dayrate"
+            app:layout_constraintTop_toBottomOf="@+id/journal" />
 
         <ImageView
-            android:id="@+id/imageView13"
-            android:layout_width="330dp"
-            android:layout_height="357dp"
-            android:layout_marginEnd="108dp"
-            android:layout_marginBottom="-35dp"
+            android:id="@+id/playlists1"
+            android:layout_width="186dp"
+            android:layout_height="204dp"
+            android:layout_marginEnd="198dp"
+            android:layout_marginBottom="55dp"
             android:src="@drawable/musicicon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+            app:layout_constraintTop_toBottomOf="@+id/dayrate" />
+
+        <TextView
+            android:id="@+id/journal"
+            android:layout_width="89dp"
+            android:layout_height="42dp"
+
+            android:layout_marginTop="-25dp"
+            android:layout_marginEnd="85dp"
+            android:layout_marginBottom="49dp"
+            android:background="@drawable/rounded_text"
+            android:backgroundTint="#B6D19C"
+            android:gravity="center"
+            android:text="journaling"
+            android:textAlignment="center"
+            android:textColor="#29311F"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/schedules"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/DayRating"
+            app:layout_constraintTop_toBottomOf="@+id/journaling"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/schedule"
+            android:layout_width="106dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="-10dp"
+            android:layout_marginTop="-30dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="150dp"
+            android:background="@drawable/rounded_text"
+            android:backgroundTint="#B6D19C"
+
+            android:gravity="center"
+            android:text="schedule"
+            android:textAlignment="center"
+            android:textColor="#29311F"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/schedules"
+            app:layout_constraintHorizontal_bias="0.661"
+            app:layout_constraintStart_toStartOf="@+id/schedules"
+            app:layout_constraintTop_toBottomOf="@+id/journaling" />
+
+        <TextView
+            android:id="@+id/playlist"
+            android:layout_width="105dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_text"
+            android:backgroundTint="#B6D19C"
+            android:gravity="center"
+            android:text="playlists"
+
+            android:textAlignment="center"
+            android:textColor="#29311F"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/playlists1"
+            app:layout_constraintHorizontal_bias="0.518"
+            app:layout_constraintStart_toStartOf="@+id/playlists1"
+            app:layout_constraintTop_toBottomOf="@+id/DayRating" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

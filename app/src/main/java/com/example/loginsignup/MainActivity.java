@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void gotoLoginFragment() {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frameLayOutMain, new LoginFragment());
+        ft.replace(R.id.frameLayOutMain, new HomePage());
         ft.commit();
     }
 
