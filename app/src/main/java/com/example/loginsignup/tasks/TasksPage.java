@@ -1,4 +1,4 @@
-package com.example.loginsignup;
+package com.example.loginsignup.tasks;
 
 import android.os.Bundle;
 
@@ -12,9 +12,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.loginsignup.FirebaseServices;
+import com.example.loginsignup.HomePage;
+import com.example.loginsignup.R;
+import com.example.loginsignup.user.DataUser;
+import com.example.loginsignup.user.DataUserAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -22,18 +32,19 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AllDataFragment#newInstance} factory method to
+ * Use the {@link TasksPage#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AllDataFragment extends Fragment {
-
+public class TasksPage extends Fragment {
+    private ArrayList<Task> tasks;
+    private Button addButton;
+    private TaskAdapter taskAdapter;
     private FirebaseServices fbs;
-    private ArrayList<DataUser> users;
-    private RecyclerView rvUsers;
-    private DataUserAdapter adapter;
-    private TextView gotoAddData;
+    private RecyclerView rvTasks;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,9 +55,10 @@ public class AllDataFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public AllDataFragment() {
+    public TasksPage() {
         // Required empty public constructor
     }
+    private ImageView backtohome;
 
     /**
      * Use this factory method to create a new instance of
@@ -54,11 +66,11 @@ public class AllDataFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AllDataFragment.
+     * @return A new instance of fragment TasksPage.
      */
     // TODO: Rename and change types and number of parameters
-    public static AllDataFragment newInstance(String param1, String param2) {
-        AllDataFragment fragment = new AllDataFragment();
+    public static TasksPage newInstance(String param1, String param2) {
+        TasksPage fragment = new TasksPage();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -79,35 +91,41 @@ public class AllDataFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_all_data, container, false);
+        return inflater.inflate(R.layout.fragment_tasks_page, container, false);
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        addButton=getView().findViewById(R.id.add);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
+
+        /*itemsAdapter= new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
+        List.setAdapter(itemsAdapter);*/
 
         fbs = FirebaseServices.getInstance();
-        users = new ArrayList<>();
-        rvUsers = getView().findViewById(R.id.rvDataUserFragment);
-        adapter = new DataUserAdapter(getActivity(), users);
-        rvUsers.setAdapter(adapter);
-        rvUsers.setHasFixedSize(true);
-        rvUsers.setLayoutManager(new LinearLayoutManager(getActivity()));
-        fbs.getFire().collection("data").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        tasks = new ArrayList<>();
+        rvTasks = getView().findViewById(R.id.rvTaskspage);
+        taskAdapter = new DataUserAdapter(getActivity(), tasks);
+        rvTasks.setAdapter(taskAdapter);
+        rvTasks.setHasFixedSize(true);
+        rvTasks.setLayoutManager(new LinearLayoutManager(getActivity()));
+        fbs.getFire().collection("task").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
                 for (DocumentSnapshot dataSnapshot: queryDocumentSnapshots.getDocuments()){
-                    DataUser user = dataSnapshot.toObject(DataUser.class);
-                    users.add(user);
+                    Task task = dataSnapshot.toObject(Task.class);
+                    tasks.add(task);
                 }
 
-                adapter.notifyDataSetChanged();
+                taskAdapter.notifyDataSetChanged();
             }
-
-
-
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
@@ -115,19 +133,20 @@ public class AllDataFragment extends Fragment {
                 Log.e("AllDataFragment", e.getMessage());
             }
         });
-       /* gotoAddData.findViewById(R.id.AddDataAllData);
-        gotoAddData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GotoAddData();
-            }'
-        });*/
+    }
+    /*private void addItem(View view) {
+        EditText input = getView().findViewById(R.id.TaskET); 
+        String itemText = input.getText().toString();
+        
+        if (!(itemText.equals(""))){
+            itemsAdapter.add(itemText);
+        }
+        else {
+            Toast.makeText(getActivity().getApplicationContext(), "please enter text...", Toast.LENGTH_SHORT).show();
+        }
 
 
-    }
-    private void GotoAddData() {
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frameLayOutMain, new AddDataFragment());
-        ft.commit();
-    }
+    }*/
+
+
 }

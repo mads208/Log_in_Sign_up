@@ -1,4 +1,4 @@
-package com.example.loginsignup;
+package com.example.loginsignup.user;
 
 public class DataUser {
     private String MusicGenre;

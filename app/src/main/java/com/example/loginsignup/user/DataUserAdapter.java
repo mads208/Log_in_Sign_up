@@ -1,4 +1,4 @@
-package com.example.loginsignup;
+package com.example.loginsignup.user;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.loginsignup.FirebaseServices;
+import com.example.loginsignup.R;
 
 import java.util.ArrayList;
 

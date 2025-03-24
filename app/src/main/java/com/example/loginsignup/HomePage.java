@@ -2,7 +2,6 @@ package com.example.loginsignup;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -14,7 +13,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 
-import org.jetbrains.annotations.Nullable;
+import com.example.loginsignup.tasks.TasksPage;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -148,7 +147,6 @@ public class HomePage extends Fragment {
 
         playlist.setOnClickListener(v -> {
             playlist.startAnimation(rotateAnimation);
-
             // Wait for animation to finish before switching fragment
             rotateAnimation.setAnimationListener(new Animation.AnimationListener() {
                 @Override
