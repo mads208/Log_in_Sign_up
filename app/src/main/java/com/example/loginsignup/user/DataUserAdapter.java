@@ -8,10 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.loginsignup.FirebaseServices;
 import com.example.loginsignup.R;
+import com.example.loginsignup.tasks.Task;
 
 import java.util.ArrayList;
 

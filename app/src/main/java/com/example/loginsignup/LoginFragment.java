@@ -139,7 +139,7 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         Toast.makeText(getActivity(), "success", Toast.LENGTH_SHORT).show();
-                        return;
+                        gotoHomePage();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
 
@@ -177,5 +177,11 @@ public class LoginFragment extends Fragment {
         ft.replace(R.id.frameLayOutMain, new AboutUsFragment());
         ft.commit();
     }
+    private void gotoHomePage() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayOutMain, new HomePage());
+        ft.commit();
+    }
+
 
 }

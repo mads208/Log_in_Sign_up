@@ -11,23 +11,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.loginsignup.FirebaseServices;
 import com.example.loginsignup.R;
+import com.example.loginsignup.user.DataUser;
+import com.example.loginsignup.user.DataUserAdapter;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
+public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> {
     private ArrayList<Task> taskList;
     Context context;
     private FirebaseServices fbs;
 
 
 
-    public interface OnTaskClickListener {
-        void onTaskClick(Task task);
-    }
 
-    public TaskAdapter(ArrayList<Task> taskList, OnTaskClickListener listener) {
+
+    public TaskAdapter(Context context, ArrayList<Task> taskList) {
         this.context = context;
         this.taskList = taskList;
         this.fbs = FirebaseServices.getInstance();
@@ -35,19 +35,19 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     }
 
     @NonNull
-    @Override
-    public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_task, parent, false);
-        return new TaskViewHolder(view);
+    public TaskAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
+        View v= LayoutInflater.from(context).inflate(R.layout.user_item,parent,false);
+        return  new TaskAdapter.MyViewHolder(v);
     }
 
+
+
     @Override
-    public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Task task = taskList.get(position);
         holder.taskText.setText(task.getTaskText());
         holder.createdDate.setText("Created: " + task.getCreatedDateString());
         holder.dueDate.setText("Due: " + task.getDueDate());
-        holder.completedDate.setText("completed: "+ task.getCompletedDateString());
     }
 
 
@@ -56,15 +56,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         return taskList.size();
     }
 
-    public static class TaskViewHolder extends RecyclerView.ViewHolder {
-        TextView taskText, createdDate, dueDate,completedDate;
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView taskText, createdDate, dueDate;
 
-        public TaskViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             taskText = itemView.findViewById(R.id.taskTexttv);
             createdDate = itemView.findViewById(R.id.createdDatetv);
             dueDate = itemView.findViewById(R.id.dueDatetv);
-            completedDate = itemView.findViewById(R.id.);
         }
     }
 }
