@@ -13,8 +13,8 @@
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="418dp"
-            android:layout_height="627dp"
+            android:layout_width="393dp"
+            android:layout_height="595dp"
             android:src="@drawable/rounded_rectangle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -23,25 +23,26 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvTaskspage"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="376dp"
+            android:layout_height="439dp"
             android:layout_marginBottom="197dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TaskET" />
+            app:layout_constraintTop_toBottomOf="@+id/TaskET"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
             android:id="@+id/TaskET"
-            android:layout_width="273dp"
-            android:layout_height="50dp"
+            android:layout_width="267dp"
+            android:layout_height="48dp"
             android:layout_marginTop="200dp"
             android:layout_marginBottom="2dp"
             android:hint="Enter Task ..."
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/rvTaskspage"
             app:layout_constraintEnd_toStartOf="@+id/add"
-            app:layout_constraintHorizontal_bias="0.761"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,8 +50,8 @@
             android:id="@+id/add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="72dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="28dp"
             android:backgroundTint="#7C8F69"
             android:text="Add"
             app:layout_constraintEnd_toEndOf="parent"
@@ -74,7 +75,7 @@
             android:id="@+id/textView"
             android:layout_width="160dp"
             android:layout_height="46dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="44dp"
             android:background="@drawable/rounded_text"
             android:backgroundTint="#F0D7BB"
             android:gravity="center"
