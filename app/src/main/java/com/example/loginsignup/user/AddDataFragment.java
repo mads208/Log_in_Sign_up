@@ -18,10 +18,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.loginsignup.FirebaseServices;
-import com.example.loginsignup.LoginFragment;
+import com.example.loginsignup.general.FirebaseServices;
+import com.example.loginsignup.general.HomePage;
+import com.example.loginsignup.general.LoginFragment;
 import com.example.loginsignup.R;
-import com.example.loginsignup.Utils;
+import com.example.loginsignup.general.Utils;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -40,7 +41,7 @@ public class AddDataFragment extends Fragment {
     private Button Addbtn;
     private FirebaseServices fbs;
     private TextView GoToAllData;
-    private TextView GoToLogin;
+    private TextView GoToHome;
     private ImageView img;
     private String imageStr;
 
@@ -140,11 +141,11 @@ public class AddDataFragment extends Fragment {
 
             }
         });
-        GoToLogin = getView().findViewById(R.id.gotoLoginAddData);
-        GoToLogin.setOnClickListener(new View.OnClickListener() {
+        GoToHome = getView().findViewById(R.id.gotoHomeAddData);
+        GoToHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GotoLogin();
+                GotoHomePage();
 
             }
         });
@@ -193,6 +194,11 @@ public class AddDataFragment extends Fragment {
     private void GotoLogin() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayOutMain, new LoginFragment());
+        ft.commit();
+    }
+    private void GotoHomePage() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayOutMain, new HomePage());
         ft.commit();
     }
     @Override

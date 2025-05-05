@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/greenline"
-    tools:context=".HomePage" >
+    tools:context=".general.HomePage" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

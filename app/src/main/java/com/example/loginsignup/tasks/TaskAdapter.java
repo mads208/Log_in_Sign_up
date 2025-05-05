@@ -9,14 +9,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.loginsignup.FirebaseServices;
+import com.example.loginsignup.general.FirebaseServices;
 import com.example.loginsignup.R;
-import com.example.loginsignup.user.DataUser;
-import com.example.loginsignup.user.DataUserAdapter;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> {
     private ArrayList<Task> taskList;
@@ -36,7 +33,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
     @NonNull
     public TaskAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
-        View v= LayoutInflater.from(context).inflate(R.layout.user_item,parent,false);
+        View v= LayoutInflater.from(context).inflate(R.layout.item_task,parent,false);
         return  new TaskAdapter.MyViewHolder(v);
     }
 

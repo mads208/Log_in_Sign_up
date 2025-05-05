@@ -1,4 +1,4 @@
-package com.example.loginsignup;
+package com.example.loginsignup.general;
 
 import android.os.Bundle;
 
@@ -13,9 +13,8 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.example.loginsignup.R;
 
 /**
  * A simple {@link Fragment} subclass.

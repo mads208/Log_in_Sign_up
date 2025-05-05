@@ -9,6 +9,9 @@ public class Task {
     private String createdDate;
     private String dueDate;
 
+    public Task() {
+    }
+
     public Task(String taskText,String dueDate, Date createdDate) {
     }
 

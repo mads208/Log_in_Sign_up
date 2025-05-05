@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/greenline"
+    tools:context=".journaling.journalPage" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/imageView14"
+            android:layout_width="72dp"
+            android:layout_height="82dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="132dp"
+            android:src="@drawable/circle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="505dp"
+            android:layout_height="762dp"
+            android:layout_marginBottom="-50dp"
+            android:src="@drawable/rounded_rectangle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.88" />
+
+        <TextView
+            android:id="@+id/done"
+            android:layout_width="102dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="188dp"
+            android:background="@drawable/rounded_text"
+            android:backgroundTint="#B6D19C"
+
+            android:gravity="center"
+            android:text="Done "
+            android:textAlignment="center"
+            android:textColor="#4D5B4F"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.051"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/backToHomePage2"
+            android:layout_width="64dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/circle"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageView
+            android:id="@+id/history1"
+            android:layout_width="62dp"
+            android:layout_height="63dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/circle"
+            android:src="@drawable/historyicon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/imageView13"
+            android:layout_width="73dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="132dp"
+            android:layout_marginEnd="52dp"
+            android:src="@drawable/dark_circle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="74dp"
+            android:layout_height="66dp"
+            android:layout_marginTop="124dp"
+            android:layout_marginEnd="44dp"
+            android:src="@drawable/circle_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/Title"
+            android:layout_width="390dp"
+            android:layout_height="74dp"
+            android:layout_marginTop="100dp"
+            android:ems="10"
+            android:fontFamily="@font/abril_fatface"
+            android:hint="Title ..."
+
+            android:inputType="text"
+            android:textColor="#495947"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.053"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+        <EditText
+            android:id="@+id/typingBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/abril_fatface"
+            android:gravity="top|start"
+            android:hint="Start journaling ..."
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="textMultiLine"
+            android:maxLines="10"
+            android:minLines="1"
+            android:overScrollMode="always"
+            android:padding="12dp"
+            android:scrollbars="vertical"
+            android:textColor="#5F6B5D"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

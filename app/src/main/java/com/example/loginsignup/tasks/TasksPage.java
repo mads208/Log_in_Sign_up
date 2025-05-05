@@ -2,45 +2,33 @@ package com.example.loginsignup.tasks;
 
 import android.content.DialogInterface;
 import android.icu.text.SimpleDateFormat;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.loginsignup.FirebaseServices;
-import com.example.loginsignup.HomePage;
+import com.example.loginsignup.general.FirebaseServices;
 import com.example.loginsignup.R;
-import com.example.loginsignup.user.DataUser;
-import com.example.loginsignup.user.DataUserAdapter;
+import com.example.loginsignup.general.HomePage;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
-
-import java.util.Date;
-
 
 
 /**
@@ -55,6 +43,11 @@ public class TasksPage extends Fragment {
     private FirebaseServices fbs;
     private RecyclerView rvTasks;
     private EditText taskText;
+    private ImageView backToHomePage;
+    private Button goToAllTasksTasks;
+
+
+
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -71,84 +64,32 @@ public class TasksPage extends Fragment {
     }
 
 
-
-
-
-    /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TasksPage.
-         */
-    // TODO: Rename and change types and number of parameters
-    public static TasksPage newInstance(String param1, String param2) {
-        TasksPage fragment = new TasksPage();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        connectComponents();
-        return inflater.inflate(R.layout.fragment_tasks_page, container, false);
-
-    }
-
-
     @Override
     public void onStart() {
         super.onStart();
 
+        connectComponents();
+
+        backToHomePage = getView().findViewById(R.id.backToHome);
+        backToHomePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GotoHomePage();
+            }
+        });
+        goToAllTasksTasks = getView().findViewById(R.id.goToAllTasks);
+        goToAllTasksTasks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GotoTaskToDo();
+            }
+        });
 
         /*itemsAdapter= new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
         List.setAdapter(itemsAdapter);*/
 
-
-
-
-        fbs = FirebaseServices.getInstance();
-        tasks = new ArrayList<>();
-        rvTasks = getView().findViewById(R.id.rvTaskspage);
-        taskAdapter = new TaskAdapter(getActivity(), tasks);
-        rvTasks.setAdapter(taskAdapter);
-        rvTasks.setHasFixedSize(true);
-        rvTasks.setLayoutManager(new LinearLayoutManager(getActivity()));
-        fbs.getFire().collection("task").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-
-                for (DocumentSnapshot dataSnapshot: queryDocumentSnapshots.getDocuments()){
-                    Task task = dataSnapshot.toObject(Task.class);
-                    tasks.add(task);
-                }
-
-                taskAdapter.notifyDataSetChanged();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
-                Log.e("AllDataFragment", e.getMessage());
-            }
-        });
-
     }
+
     private void connectComponents() {
 
         taskText = getView().findViewById(R.id.TaskET);
@@ -193,6 +134,40 @@ public class TasksPage extends Fragment {
         });
 
     }
+
+
+
+    /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment TasksPage.
+         */
+    // TODO: Rename and change types and number of parameters
+    public static TasksPage newInstance(String param1, String param2) {
+        TasksPage fragment = new TasksPage();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
+
+
+
+
+
     private void showDueDateDialog(Task task) {
         // Create an EditText for the due date input
         final EditText dueDateInput = new EditText(getActivity());
@@ -234,6 +209,25 @@ public class TasksPage extends Fragment {
                 .setNegativeButton("Cancel", null)  // Do nothing on Cancel
                 .create()
                 .show();
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_tasks_page, container, false);
+
+    }
+    private void GotoHomePage() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayOutMain, new HomePage());
+        ft.commit();
+    }
+    private void GotoTaskToDo() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayOutMain, new ToDoTasks());
+        ft.commit();
     }
 
 }

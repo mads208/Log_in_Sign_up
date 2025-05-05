@@ -1,4 +1,4 @@
-package com.example.loginsignup;
+package com.example.loginsignup.general;
 
 import android.os.Bundle;
 
@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.loginsignup.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 

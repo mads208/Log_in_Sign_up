@@ -9,18 +9,6 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:id="@+id/GoToAllDataAddData"
-        android:layout_width="137dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="652dp"
-        android:layout_marginEnd="136dp"
-        android:background="@drawable/rounded_text"
-        android:backgroundTint="#B6D19C"
-        android:gravity="center"
-        android:text="  View All Data  "
-        android:textAlignment="center" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -30,14 +18,16 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="27dp"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="72dp"
             android:layout_marginEnd="27dp"
             android:layout_marginBottom="40dp"
             android:src="@drawable/rounded_rectangle"
             app:layout_constraintBottom_toTopOf="@+id/AddAddbtn"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/AddAddbtn"
@@ -47,7 +37,7 @@
             android:backgroundTint="#B6D19C"
             android:text="Add"
             android:textColor="#2B432C"
-            app:layout_constraintBottom_toTopOf="@+id/gotoLoginAddData"
+            app:layout_constraintBottom_toTopOf="@+id/gotoHomeAddData"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etGoalAdd" />
@@ -84,6 +74,7 @@
             android:id="@+id/etGoalAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="-29dp"
             android:layout_marginBottom="78dp"
             android:ems="10"
             android:hint="Your Goal ..."
@@ -96,18 +87,19 @@
             app:layout_constraintTop_toBottomOf="@+id/etTaskDaysAdd" />
 
         <TextView
-            android:id="@+id/gotoLoginAddData"
-            android:layout_width="138dp"
+            android:id="@+id/gotoHomeAddData"
+            android:layout_width="175dp"
             android:layout_height="40dp"
 
             android:layout_marginBottom="25dp"
             android:background="@drawable/rounded_text"
             android:backgroundTint="#B6D19C"
             android:gravity="center"
-            android:text="  Back to Log in  "
+            android:text="  Go to the home page  "
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.572"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/AddAddbtn" />
 
@@ -122,6 +114,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/GoToAllDataAddData"
+            android:layout_width="137dp"
+            android:layout_height="30dp"
+            android:background="@drawable/rounded_text"
+            android:backgroundTint="#B6D19C"
+            android:gravity="center"
+            android:text="  View All Data  "
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="138dp"
+            tools:layout_editor_absoluteY="650dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

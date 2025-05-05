@@ -1,4 +1,4 @@
-package com.example.loginsignup.user;
+package com.example.loginsignup.tasks;
 
 import android.os.Bundle;
 
@@ -12,11 +12,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.loginsignup.general.FirebaseServices;
 import com.example.loginsignup.R;
+import com.example.loginsignup.general.FirebaseServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -26,16 +27,18 @@ import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AllDataFragment#newInstance} factory method to
+ * Use the {@link ToDoTasks#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AllDataFragment extends Fragment {
+public class ToDoTasks extends Fragment {
 
+    private ArrayList<Task> tasks;
+    private ImageView backToTasksToDo;
+    private TaskAdapter taskAdapter;
     private FirebaseServices fbs;
-    private ArrayList<DataUser> users;
-    private RecyclerView rvUsers;
-    private DataUserAdapter adapter;
-    private TextView gotoAddData;
+    private RecyclerView rvTasks;
+    private EditText taskText;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,7 +49,7 @@ public class AllDataFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public AllDataFragment() {
+    public ToDoTasks() {
         // Required empty public constructor
     }
 
@@ -56,11 +59,11 @@ public class AllDataFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AllDataFragment.
+     * @return A new instance of fragment ToDoTasks.
      */
     // TODO: Rename and change types and number of parameters
-    public static AllDataFragment newInstance(String param1, String param2) {
-        AllDataFragment fragment = new AllDataFragment();
+    public static ToDoTasks newInstance(String param1, String param2) {
+        ToDoTasks fragment = new ToDoTasks();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -81,52 +84,52 @@ public class AllDataFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_all_data, container, false);
+        return inflater.inflate(R.layout.fragment_to_do_tasks, container, false);
     }
-
     @Override
     public void onStart() {
         super.onStart();
 
-
+        backToTasksToDo = getView().findViewById(R.id.backToTasks);
+        backToTasksToDo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GotoTaskPage();
+            }
+        });
         fbs = FirebaseServices.getInstance();
-        users = new ArrayList<>();
-        rvUsers = getView().findViewById(R.id.rvDataUserFragment);
-        adapter = new DataUserAdapter(getActivity(), users);
-        rvUsers.setAdapter(adapter);
-        rvUsers.setHasFixedSize(true);
-        rvUsers.setLayoutManager(new LinearLayoutManager(getActivity()));
-        fbs.getFire().collection("data").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        tasks = new ArrayList<>();
+        rvTasks = getView().findViewById(R.id.rvTaskspage);
+        taskAdapter = new TaskAdapter(getActivity(), tasks);
+        rvTasks.setAdapter(taskAdapter);
+        rvTasks.setHasFixedSize(true);
+        rvTasks.setLayoutManager(new LinearLayoutManager(getActivity()));
+        fbs.getFire().collection("task").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
                 for (DocumentSnapshot dataSnapshot: queryDocumentSnapshots.getDocuments()){
-                    DataUser user = dataSnapshot.toObject(DataUser.class);
-                    users.add(user);
+                    Task task = dataSnapshot.toObject(Task.class);
+                    tasks.add(task);
                 }
 
-                adapter.notifyDataSetChanged();
+                taskAdapter.notifyDataSetChanged();
             }
-       }).addOnFailureListener(new OnFailureListener() {
+        }).addOnFailureListener(new OnFailureListener() {
             @Override
-          public void onFailure(@NonNull Exception e) {
+            public void onFailure(@NonNull Exception e) {
                 Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
                 Log.e("AllDataFragment", e.getMessage());
             }
         });
-       /* gotoAddData.findViewById(R.id.AddDataAllData);
-        gotoAddData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GotoAddData();
-            }'
-        });*/
+
 
 
     }
-    private void GotoAddData() {
+
+    private void GotoTaskPage() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frameLayOutMain, new AddDataFragment());
+        ft.replace(R.id.frameLayOutMain, new TasksPage());
         ft.commit();
     }
 }

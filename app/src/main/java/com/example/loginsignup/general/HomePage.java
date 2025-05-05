@@ -1,4 +1,4 @@
-package com.example.loginsignup;
+package com.example.loginsignup.general;
 
 import android.os.Bundle;
 
@@ -13,6 +13,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 
+import com.example.loginsignup.DailyRating.dayRate;
+import com.example.loginsignup.R;
+import com.example.loginsignup.journaling.journalPage;
 import com.example.loginsignup.tasks.TasksPage;
 
 /**
@@ -93,7 +96,7 @@ public class HomePage extends Fragment {
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                    ft.replace(R.id.frameLayOutMain, new LoginFragment()); // Replace with your actual fragment
+                    ft.replace(R.id.frameLayOutMain, new journalPage()); // Replace with your actual fragment
                     ft.commit();
                 }
 
@@ -114,7 +117,7 @@ public class HomePage extends Fragment {
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                    ft.replace(R.id.frameLayOutMain, new LoginFragment()); // Replace with your target fragment
+                    ft.replace(R.id.frameLayOutMain, new dayRate()); // Replace with your target fragment
                     ft.commit();
                 }
 

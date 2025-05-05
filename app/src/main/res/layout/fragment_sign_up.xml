@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/greenflow"
-    tools:context=".SignUpFragment">
+    tools:context=".general.SignUpFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -181,7 +181,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="45dp"
-            android:layout_marginBottom="220dp"
+            android:layout_marginBottom="250dp"
             android:ems="10"
             android:hint="Email / UserName ..."
             android:inputType="textEmailAddress"
@@ -248,8 +248,8 @@
 
         <TextView
             android:id="@+id/BackToLoginSignup"
-            android:layout_width="150dp"
-            android:layout_height="34dp"
+            android:layout_width="0dp"
+            android:layout_height="-1000000dp"
             android:layout_marginBottom="285dp"
             android:background="@drawable/rounded_text"
             android:backgroundTint="#B6D19C"

@@ -1,4 +1,4 @@
-package com.example.loginsignup;
+package com.example.loginsignup.general;
 
 import android.app.AlertDialog;
 import android.content.Context;
