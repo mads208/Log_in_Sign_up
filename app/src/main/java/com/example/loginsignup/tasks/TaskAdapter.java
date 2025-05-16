@@ -43,7 +43,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Task task = taskList.get(position);
         holder.taskText.setText(task.getTaskText());
-        holder.createdDate.setText("Created: " + task.getCreatedDateString());
+        holder.createdDate.setText(task.getCreatedDateString());
         holder.dueDate.setText("Due: " + task.getDueDate());
     }
 

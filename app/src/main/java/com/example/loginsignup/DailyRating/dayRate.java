@@ -1,17 +1,32 @@
 package com.example.loginsignup.DailyRating;
 
+import android.icu.text.SimpleDateFormat;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.loginsignup.R;
+import com.example.loginsignup.general.FirebaseServices;
 import com.example.loginsignup.general.HomePage;
+import com.example.loginsignup.user.DataUser;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +35,11 @@ import com.example.loginsignup.general.HomePage;
  */
 public class dayRate extends Fragment {
     private ImageView backToHomePage;
+    private SeekBar seekBar;
+    private TextView Addbtn;
+    private FirebaseServices fbs;
+    private ImageView history;
+
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -36,15 +56,88 @@ public class dayRate extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        backToHomePage = getView().findViewById(R.id.backToHomePage1);
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        connectComponents(view);
+    }
+
+    private void connectComponents(View view) {
+        fbs = FirebaseServices.getInstance();
+        backToHomePage = view.findViewById(R.id.backToHomePage1);
         backToHomePage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 GotoHomePage();
             }
         });
+        history = view.findViewById(R.id.history2);
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GotoHistory();
+            }
+        });
+
+
+        seekBar = view.findViewById(R.id.seekBar2);
+        int[] currentScore = {0};
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                currentScore[0] = progress;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+
+        });
+
+        Addbtn = view.findViewById(R.id.done2);
+        Addbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String seekbar1,createdDate3;
+                seekbar1 =  String.valueOf(currentScore[0]);
+
+
+                createdDate3 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
+
+                if( seekbar1.trim().isEmpty() || createdDate3.trim().isEmpty() ){
+                    Toast.makeText(getActivity(), "some fields are empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Rating rating = new Rating(createdDate3,seekbar1);
+
+                //fbs.getAuth().createUserWithEmailAndPassword(user, pass);
+
+                fbs.getFire().collection("ratingData").add(rating).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getActivity(), "fail", Toast.LENGTH_SHORT).show();
+                        return;
+
+                    }
+                });
+
+            }
+
+        });
+
+
     }
 
     /**
@@ -77,13 +170,17 @@ public class dayRate extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_day_rate, container, false);
     }
 
     private void GotoHomePage() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayOutMain, new HomePage());
+        ft.commit();
+    }
+    private void GotoHistory() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayOutMain, new ratingHistory());
         ft.commit();
     }
 }

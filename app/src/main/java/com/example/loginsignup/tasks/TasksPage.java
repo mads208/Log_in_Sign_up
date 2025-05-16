@@ -1,5 +1,6 @@
 package com.example.loginsignup.tasks;
 
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,11 +39,8 @@ import java.util.Locale;
  * create an instance of this fragment.
  */
 public class TasksPage extends Fragment {
-    private ArrayList<Task> tasks;
     private Button addButton;
-    private TaskAdapter taskAdapter;
     private FirebaseServices fbs;
-    private RecyclerView rvTasks;
     private EditText taskText;
     private ImageView backToHomePage;
     private Button goToAllTasksTasks;
@@ -70,23 +69,6 @@ public class TasksPage extends Fragment {
 
         connectComponents();
 
-        backToHomePage = getView().findViewById(R.id.backToHome);
-        backToHomePage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GotoHomePage();
-            }
-        });
-        goToAllTasksTasks = getView().findViewById(R.id.goToAllTasks);
-        goToAllTasksTasks.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GotoTaskToDo();
-            }
-        });
-
-        /*itemsAdapter= new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
-        List.setAdapter(itemsAdapter);*/
 
     }
 
@@ -99,12 +81,21 @@ public class TasksPage extends Fragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Declare a String variable outside the DatePickerDialog so it's accessible everywhere
+
                 String taskText2;
                 String createdDate2;
                 taskText2 = taskText.getText().toString();
 
-                long currentTime = System.currentTimeMillis();  // This gives the current time in milliseconds
+                /*long currentTime = System.currentTimeMillis();  // This gives the current time in milliseconds
                 createdDate2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date(currentTime));
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                Date date = new Date();
+                createdDate2 = sdf.format(date);*/
+
+                createdDate2 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
 
 
                 if( taskText2.trim().isEmpty() ){
@@ -112,24 +103,42 @@ public class TasksPage extends Fragment {
                     return;
                 }
 
+
                 Task task = new Task(taskText2,createdDate2 ,"");
+
 
                 //fbs.getAuth().createUserWithEmailAndPassword(user, pass);
 
                 fbs.getFire().collection("task").add(task).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-
+                        Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getActivity(), "fail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
                         return;
 
                     }
                 });
+
+
                 showDueDateDialog(task);
+            }
+        });
+        backToHomePage = getView().findViewById(R.id.backToHome);
+        backToHomePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GotoHomePage();
+            }
+        });
+        goToAllTasksTasks = getView().findViewById(R.id.goToAllTasks);
+        goToAllTasksTasks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GotoTaskToDo();
             }
         });
 
@@ -191,7 +200,6 @@ public class TasksPage extends Fragment {
                         // Update the task with the due date
                         task.setDueDate(dueDate2);
 
-                        // Now add the task to Firestore
                         fbs.getFire().collection("task").add(task).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
