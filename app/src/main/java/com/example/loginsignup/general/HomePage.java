@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import com.example.loginsignup.DailyRating.dayRate;
 import com.example.loginsignup.R;
 import com.example.loginsignup.journaling.journalPage;
-import com.example.loginsignup.tasks.TasksPage;
+import com.example.loginsignup.task.TaskFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -138,7 +138,7 @@ public class HomePage extends Fragment {
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                    ft.replace(R.id.frameLayOutMain, new TasksPage()); // Replace with your target fragment
+                    ft.replace(R.id.frameLayOutMain, new TaskFragment()); // Replace with your target fragment
                     ft.commit();
                 }
 
@@ -180,7 +180,7 @@ public class HomePage extends Fragment {
     }
     private void GoToTaskFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frameLayOutMain, new TasksPage());
+        ft.replace(R.id.frameLayOutMain, new TaskFragment ());
         ft.commit();
     }
 

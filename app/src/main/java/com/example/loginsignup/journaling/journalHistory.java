@@ -1,4 +1,4 @@
-package com.example.loginsignup.tasks;
+package com.example.loginsignup.journaling;
 
 import android.os.Bundle;
 
@@ -12,12 +12,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.loginsignup.DailyRating.Rating;
+import com.example.loginsignup.DailyRating.dayRate;
+import com.example.loginsignup.DailyRating.ratingAdapter;
 import com.example.loginsignup.R;
 import com.example.loginsignup.general.FirebaseServices;
+import com.example.loginsignup.user.DataUserAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -27,18 +30,15 @@ import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ToDoTasks#newInstance} factory method to
+ * Use the {@link journalHistory#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ToDoTasks extends Fragment {
-
-    private ArrayList<Task> tasks;
-    private ImageView backToTasksToDo;
-    private TaskAdapter taskAdapter;
+public class journalHistory extends Fragment {
     private FirebaseServices fbs;
-    private RecyclerView rvTasks;
-    private EditText taskText;
-
+    private ArrayList<Journal> journals;
+    private RecyclerView rvJournals;
+    private journalAdapter adapterJo;
+    private ImageView gotoJournal;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,7 +49,7 @@ public class ToDoTasks extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public ToDoTasks() {
+    public journalHistory() {
         // Required empty public constructor
     }
 
@@ -59,11 +59,11 @@ public class ToDoTasks extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ToDoTasks.
+     * @return A new instance of fragment journalHistory.
      */
     // TODO: Rename and change types and number of parameters
-    public static ToDoTasks newInstance(String param1, String param2) {
-        ToDoTasks fragment = new ToDoTasks();
+    public static journalHistory newInstance(String param1, String param2) {
+        journalHistory fragment = new journalHistory();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -84,52 +84,54 @@ public class ToDoTasks extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_to_do_tasks, container, false);
+        return inflater.inflate(R.layout.fragment_journal_history, container, false);
     }
     @Override
     public void onStart() {
         super.onStart();
 
-        backToTasksToDo = getView().findViewById(R.id.backToTasks);
-        backToTasksToDo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GotoTaskPage();
-            }
-        });
+
         fbs = FirebaseServices.getInstance();
-        tasks = new ArrayList<>();
-        rvTasks = getView().findViewById(R.id.rvTaskspage);
-        taskAdapter = new TaskAdapter(getActivity(), tasks);
-        rvTasks.setAdapter(taskAdapter);
-        rvTasks.setHasFixedSize(true);
-        rvTasks.setLayoutManager(new LinearLayoutManager(getActivity()));
-        fbs.getFire().collection("task").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        journals = new ArrayList<>();
+        rvJournals = getView().findViewById(R.id.rvJournal);
+        adapterJo = new journalAdapter(getActivity(), journals);
+        rvJournals.setAdapter(adapterJo);
+        rvJournals.setHasFixedSize(true);
+        rvJournals.setLayoutManager(new LinearLayoutManager(getActivity()));
+        fbs.getFire().collection("journalData").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
                 for (DocumentSnapshot dataSnapshot: queryDocumentSnapshots.getDocuments()){
-                    Task task = dataSnapshot.toObject(Task.class);
-                    tasks.add(task);
+                    Journal journal2 = dataSnapshot.toObject(Journal.class);
+                    journals.add(journal2);
                 }
 
-                taskAdapter.notifyDataSetChanged();
+                adapterJo.notifyDataSetChanged();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
-                Log.e("AllDataFragment", e.getMessage());
+                Log.e("journalHistory", e.getMessage());
+            }
+        });
+
+        gotoJournal = getView().findViewById(R.id.backToJournal);
+        gotoJournal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GotoAddData();
             }
         });
 
 
 
     }
-
-    private void GotoTaskPage() {
+    private void GotoAddData() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frameLayOutMain, new TasksPage());
+        ft.replace(R.id.frameLayOutMain, new journalPage());
         ft.commit();
     }
+
 }
