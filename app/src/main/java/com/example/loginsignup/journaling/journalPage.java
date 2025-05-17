@@ -107,6 +107,7 @@ public class journalPage extends Fragment {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
+                        GotoHomePage();
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -163,19 +164,20 @@ public class journalPage extends Fragment {
 
     private void GotoHomePage() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+
+        ft.setCustomAnimations(
+                0,
+                R.anim.slide_out_down
+        );
+
         ft.replace(R.id.frameLayOutMain, new HomePage());
         ft.commit();
     }
+
     private void GotoHistory() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayOutMain, new journalHistory());
         ft.commit();
     }
-    /*backToHomePage = getView().findViewById(R.id.backToHomePage2);
-        backToHomePage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GotoHomePage();
-            }
-        });*/
+
 }

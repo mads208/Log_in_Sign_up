@@ -1,5 +1,6 @@
 package com.example.loginsignup.journaling;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +58,21 @@ public class journalAdapter extends RecyclerView.Adapter<journalAdapter.MyViewHo
             TitleA=itemView.findViewById(R.id.TitleItem);
             TextA=itemView.findViewById(R.id.TextItem);
             createdDateA=itemView.findViewById(R.id.createdDatejoItem);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        String fullTask = TextA.getText().toString();
+
+                        new AlertDialog.Builder(itemView.getContext())
+                                .setTitle("")
+                                .setMessage(fullTask)
+                                .setPositiveButton("OK", null)
+                                .show();
+                    }
+                }
+            });
         }
     }
 }

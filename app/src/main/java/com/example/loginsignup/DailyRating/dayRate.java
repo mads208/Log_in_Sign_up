@@ -122,7 +122,7 @@ public class dayRate extends Fragment {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-
+                        GotoHomePage2();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -175,6 +175,23 @@ public class dayRate extends Fragment {
 
     private void GotoHomePage() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+
+        ft.setCustomAnimations(
+                0,
+                R.anim.exit_to_right
+        );
+
+        ft.replace(R.id.frameLayOutMain, new HomePage());
+        ft.commit();
+    }
+    private void GotoHomePage2() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+
+        ft.setCustomAnimations(
+                0,
+                R.anim.slide_out_down
+        );
+
         ft.replace(R.id.frameLayOutMain, new HomePage());
         ft.commit();
     }

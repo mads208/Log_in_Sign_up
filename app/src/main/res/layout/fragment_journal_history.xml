@@ -48,7 +48,7 @@
             android:layout_width="189dp"
             android:layout_height="48dp"
             android:background="@drawable/rounded_text"
-            android:backgroundTint="#9FC36B"
+            android:backgroundTint="#F0D7BB"
             android:fontFamily="@font/poppins_extrabold"
             android:gravity="center"
             android:text="Journal History"
