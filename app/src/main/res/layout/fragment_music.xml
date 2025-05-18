@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/greenline"
+    tools:context=".Music.MusicFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="561dp"
+            android:layout_height="731dp"
+            android:layout_marginBottom="-70dp"
+            android:src="@drawable/rounded_rectangle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+        <ImageButton
+            android:id="@+id/backToHomePageMusic"
+            android:layout_width="64dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/circle"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/musictitle"
+            android:layout_width="160dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="108dp"
+            android:background="@drawable/rounded_text"
+            android:backgroundTint="#F0D7BB"
+            android:fontFamily="@font/poppins_extrabold"
+            android:gravity="center"
+            android:text="Music"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/search_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.714"
+            app:layout_constraintStart_toEndOf="@+id/backToHomePageMusic"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.361" />
+
+        <LinearLayout
+            android:layout_width="435dp"
+            android:layout_height="526dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="200dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="171dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btn1"
+                    android:layout_width="157dp"
+                    android:layout_height="152dp"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="#1B561D"
+                    android:text="chores"
+                    android:textColor="#FFFFFF"
+                    android:textColorLink="#1B561D"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btn3"
+                    android:layout_width="151dp"
+                    android:layout_height="147dp"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="#1B561D"
+                    android:text="feeling down"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btn5"
+                    android:layout_width="157dp"
+                    android:layout_height="155dp"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="#1B561D"
+                    android:text="focusing"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="58dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="203dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btn2"
+                    android:layout_width="156dp"
+                    android:layout_height="159dp"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="#1B561D"
+                    android:text="studying"
+                    android:textColor="#FFFFFF"
+                    android:textColorLink="#FDFDFD"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btn4"
+                    android:layout_width="155dp"
+                    android:layout_height="149dp"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="#1B561D"
+                    android:text="sleeping"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btn6"
+                    android:layout_width="152dp"
+                    android:layout_height="156dp"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="#1B561D"
+                    android:text="relaxing"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/search_bar"
+            android:layout_width="353dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="100dp"
+            android:background="@android:drawable/editbox_background"
+            android:backgroundTint="#BCD365"
+            android:fontFamily="@font/poppins_extrabold"
+            android:hint="Search..."
+            android:minHeight="48dp"
+            android:padding="8dp"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ToggleButton
+            android:id="@+id/togglePlayStop"
+            android:layout_width="105dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/rounded_text"
+            android:backgroundTint="#CCE273"
+            android:fontFamily="@font/poppins_extrabold"
+            android:textColor="#1B561D"
+            android:textOff="Play"
+            android:textOn="Stop"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>

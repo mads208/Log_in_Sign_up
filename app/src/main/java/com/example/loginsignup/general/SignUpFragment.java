@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.loginsignup.R;
+import com.example.loginsignup.profile.ProfileFragment;
 import com.example.loginsignup.user.AddDataFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,6 +32,7 @@ public class SignUpFragment extends Fragment {
     private Button btnSignup;
     private FirebaseServices fbs;
     private TextView BackToLogin;
+    private TextView GoToAboutUS;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -93,6 +95,14 @@ public class SignUpFragment extends Fragment {
                 gotoLoginFragment();
             }
         });
+        GoToAboutUS = getView().findViewById(R.id.AboutUsLogin);
+        GoToAboutUS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoAboutUSFragment();
+
+            }
+        });
         btnSignup = getView().findViewById(R.id.btnSignupSignup);
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,7 +132,7 @@ public class SignUpFragment extends Fragment {
 
                     }
                 });
-                gotoAdddData();
+                gotoProfile();
             }
         });
 
@@ -134,9 +144,14 @@ public class SignUpFragment extends Fragment {
         ft.replace(R.id.frameLayOutMain, new LoginFragment());
         ft.commit();
     }
-    private void gotoAdddData() {
+    private void gotoProfile() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frameLayOutMain, new AddDataFragment());
+        ft.replace(R.id.frameLayOutMain, new ProfileFragment());
+        ft.commit();
+    }
+    private void gotoAboutUSFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayOutMain, new AboutUsFragment());
         ft.commit();
     }
 }

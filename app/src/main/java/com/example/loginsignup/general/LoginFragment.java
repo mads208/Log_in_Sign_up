@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.loginsignup.R;
+import com.example.loginsignup.profile.ProfileFragment;
 import com.example.loginsignup.user.AddDataFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -159,7 +160,7 @@ public class LoginFragment extends Fragment {
 
     private void gotoAddDataFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frameLayOutMain, new AddDataFragment());
+        ft.replace(R.id.frameLayOutMain, new ProfileFragment());
         ft.commit();
     }
 

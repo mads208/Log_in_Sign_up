@@ -14,8 +14,10 @@ import android.widget.ImageView;
 
 
 import com.example.loginsignup.DailyRating.dayRate;
+import com.example.loginsignup.Music.MusicFragment;
 import com.example.loginsignup.R;
 import com.example.loginsignup.journaling.journalPage;
+import com.example.loginsignup.profile.ProfileFragment;
 import com.example.loginsignup.task.TaskFragment;
 
 /**
@@ -38,6 +40,8 @@ public class HomePage extends Fragment {
     private ImageView schedule;
     private ImageView playlist;
     private ImageView journalIcon;
+    private ImageView profile;
+
 
 
 
@@ -82,6 +86,15 @@ public class HomePage extends Fragment {
     }
     public void onStart() {
         super.onStart();
+        profile = getView().findViewById(R.id.profileHome);
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GoToProfile();
+
+            }
+        });
+
         journal = getView().findViewById(R.id.journaling);
         Animation rotateAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_once);
 
@@ -158,7 +171,7 @@ public class HomePage extends Fragment {
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                    ft.replace(R.id.frameLayOutMain, new LoginFragment()); // Replace with your target fragment
+                    ft.replace(R.id.frameLayOutMain, new MusicFragment()); // Replace with your target fragment
                     ft.commit();
                 }
 
@@ -173,9 +186,9 @@ public class HomePage extends Fragment {
 
 
 
-    private void LoginFragment() {
+    private void GoToProfile() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frameLayOutMain, new LoginFragment());
+        ft.replace(R.id.frameLayOutMain, new ProfileFragment());
         ft.commit();
     }
     private void GoToTaskFragment() {

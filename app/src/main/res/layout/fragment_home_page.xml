@@ -147,5 +147,17 @@
             app:layout_constraintHorizontal_bias="0.518"
             app:layout_constraintStart_toStartOf="@+id/playlists1"
             app:layout_constraintTop_toBottomOf="@+id/DayRating" />
+
+        <ImageView
+            android:id="@+id/profileHome"
+            android:layout_width="60dp"
+            android:layout_height="59dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/circle"
+            android:src="@drawable/settingsicontwo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

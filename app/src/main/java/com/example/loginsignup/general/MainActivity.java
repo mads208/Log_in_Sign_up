@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.loginsignup.Music.MusicFragment;
 import com.example.loginsignup.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frameLayOutMain, new MusicFragment())
+                .commit();
 
 
     }
