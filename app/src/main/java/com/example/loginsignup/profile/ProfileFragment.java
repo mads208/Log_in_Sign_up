@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -26,12 +28,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.bumptech.glide.Glide;
 import com.example.loginsignup.R;
 import com.example.loginsignup.general.HomePage;
 import com.example.loginsignup.general.LoginFragment;
 import com.example.loginsignup.journaling.journalHistory;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,6 +57,8 @@ public class ProfileFragment extends Fragment {
     private Button saveButton;
     private static final int PICK_IMAGE_REQUEST = 1;
     private Uri selectedImageUri;
+    private ActivityResultLauncher<String> imagePickerLauncher;
+
 
 
     private final String[] days = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
@@ -58,13 +67,48 @@ public class ProfileFragment extends Fragment {
     private Set<String> selectedDays = new HashSet<>();
     private Set<String> selectedGenres = new HashSet<>();
 
-    private FirebaseFirestore db;
-    private final String USER_ID = "defaultUser";
+    private FirebaseFirestore fbs;
+    private String USER_ID;
     private ImageView backToHomePage;
     private TextView goToLogIn;
+    private FirebaseStorage firebaseStorage;
+    private StorageReference storageReference;
 
 
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        firebaseStorage = FirebaseStorage.getInstance();
+
+        imagePickerLauncher = registerForActivityResult(
+                new ActivityResultContracts.GetContent(),
+                uri -> {
+                    if (uri != null) {
+                        selectedImageUri = uri;
+                        if (profileImage != null) {
+                            profileImage.setImageURI(uri);
+                        }
+
+                        String fileName = "profile_images/" + USER_ID + ".jpg";
+                        StorageReference storageRef = firebaseStorage.getReference().child(fileName);
+                        storageRef.putFile(uri)
+                                .addOnSuccessListener(taskSnapshot -> {
+                                    storageRef.getDownloadUrl().addOnSuccessListener(downloadUri -> {
+                                        uploadedImageUrl = downloadUri.toString(); // Save URL to a class variable
+                                        saveProfileDataToFirestore(); // Save immediately after upload
+                                        Toast.makeText(getContext(), "Image uploaded and saved!", Toast.LENGTH_SHORT).show();
+                                    });
+                                })
+                                .addOnFailureListener(e -> {
+                                    Toast.makeText(getContext(), "Upload failed", Toast.LENGTH_SHORT).show();
+                                });
+
+                    }
+                }
+        );
+    }
 
 
     @Override
@@ -94,21 +138,26 @@ public class ProfileFragment extends Fragment {
         goalEditText = root.findViewById(R.id.goalEditText);
         saveButton = root.findViewById(R.id.saveButton);
 
-        db = FirebaseFirestore.getInstance();
+        fbs = FirebaseFirestore.getInstance();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            USER_ID = currentUser.getUid();
+            loadProfileDataFromFirestore(); // Only call this if we have a valid user
+        } else {
+            Toast.makeText(getContext(), "User not logged in", Toast.LENGTH_SHORT).show();
+        }
+
 
         setupTaskDaysCheckboxes();
         setupMusicGenresCheckboxes();
 
-        loadProfileDataFromFirestore();
 
         saveButton.setOnClickListener(v -> saveProfileDataToFirestore());
 
         profileImage.setOnClickListener(v -> {
-            Intent intent = new Intent();
-            intent.setType("image/*");
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+            imagePickerLauncher.launch("image/*");
         });
+
 
         return root;
     }
@@ -183,7 +232,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void loadProfileDataFromFirestore() {
-        DocumentReference docRef = db.collection("users").document(USER_ID);
+        DocumentReference docRef = fbs.collection("users2").document(USER_ID);
         docRef.get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
@@ -210,6 +259,15 @@ public class ProfileFragment extends Fragment {
                                 selectedGenres.addAll(genresFromDb);
                                 updateMusicGenresUI();
                             }
+                            String imageUrl = (String) data.get("profileImageUrl");
+                            if (imageUrl != null && getContext() != null) {
+                                uploadedImageUrl = imageUrl;
+                                Glide.with(getContext())
+                                        .load(imageUrl)
+                                        .into(profileImage);
+                            }
+
+
                         }
                     }
                 })
@@ -242,26 +300,30 @@ public class ProfileFragment extends Fragment {
         }
     }
 
+    private String uploadedImageUrl = null; // add this as a class member variable
+
     private void saveProfileDataToFirestore() {
         Map<String, Object> data = new HashMap<>();
         data.put("taskDays", new ArrayList<>(selectedDays));
         data.put("musicGenres", new ArrayList<>(selectedGenres));
         data.put("goal", goalEditText.getText().toString().trim());
 
-        db.collection("users").document(USER_ID)
-                .set(data)
-                .addOnSuccessListener(aVoid -> Toast.makeText(getContext(), "Profile saved!", Toast.LENGTH_SHORT).show())
-                .addOnFailureListener(e -> Toast.makeText(getContext(), "Failed to save profile", Toast.LENGTH_SHORT).show());
-    }
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
-            selectedImageUri = data.getData();
-            profileImage.setImageURI(selectedImageUri);
-            // Optional: upload selectedImageUri to Firebase Storage here if you want to save the photo
+        if (uploadedImageUrl != null) {
+            data.put("profileImageUrl", uploadedImageUrl);
         }
+
+        fbs.collection("users2").document(USER_ID)
+                .set(data)
+                .addOnSuccessListener(aVoid ->
+                        Toast.makeText(getContext(), "Profile saved!", Toast.LENGTH_SHORT).show()
+                )
+                .addOnFailureListener(e ->
+                        Toast.makeText(getContext(), "Failed to save profile", Toast.LENGTH_SHORT).show()
+                );
     }
+
+
+
     private void GotoHomePage() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayOutMain, new HomePage());

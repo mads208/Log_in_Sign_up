@@ -101,7 +101,9 @@ public class ratingHistory extends Fragment {
         rvRating.setAdapter(adapter3);
         rvRating.setHasFixedSize(true);
         rvRating.setLayoutManager(new LinearLayoutManager(getActivity()));
-        fbs.getFire().collection("ratingData").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        fbs.getFire().collection("ratingData")
+                .whereEqualTo("userId", fbs.getAuth().getCurrentUser().getUid())
+                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 

@@ -4,15 +4,25 @@ public class Journal {
     private String Title2;
     private String Text2;
     private String createdDateJournal;
+    private String userId;
 
 
     public Journal() {
     }
 
-    public Journal(String Title2, String Text2,String createdDateJournal) {
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public Journal(String Title2, String Text2, String createdDateJournal, String userId) {
         this.Title2 = Title2;
         this.Text2 = Text2;
         this.createdDateJournal = createdDateJournal;
+        this.userId=userId;
     }
 
     public String getText2() {

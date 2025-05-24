@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ import android.widget.Toast;
 
 import com.example.loginsignup.R;
 import com.example.loginsignup.general.HomePage;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -37,8 +40,10 @@ public class TaskFragment extends Fragment {
     private RecyclerView taskRecyclerView;
     private TaskAdapter adapter;
     private List<Task> taskList;
-    private FirebaseFirestore db;
+    private FirebaseFirestore fbs;
     private ImageView backtoHomePage;
+    private String userId;
+
 
 
     public TaskFragment() {}
@@ -53,7 +58,7 @@ public class TaskFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        db = FirebaseFirestore.getInstance();
+        fbs = FirebaseFirestore.getInstance();
         taskInput = view.findViewById(R.id.taskInput);
         addTaskBtn = view.findViewById(R.id.addTaskBtn);
         taskRecyclerView = view.findViewById(R.id.taskRecyclerView);
@@ -83,9 +88,22 @@ public class TaskFragment extends Fragment {
 
 
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadTasksFromFirestore();
+    }
+
 
     private void loadTasksFromFirestore() {
-        db.collection("tasks")
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser == null) {
+            Toast.makeText(getActivity(), "User not logged in", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String userId = currentUser.getUid();
+        fbs.collection("tasks")
+                .whereEqualTo("user_ID", userId)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     taskList.clear();
@@ -95,6 +113,7 @@ public class TaskFragment extends Fragment {
                             task.setId(doc.getId());
                             taskList.add(task);
                         }
+
                     }
                     adapter.notifyDataSetChanged();
                 })
@@ -108,9 +127,11 @@ public class TaskFragment extends Fragment {
                 (view, year, month, dayOfMonth) -> {
                     // Month is 0-based
                     String dueDateStr = String.format(Locale.getDefault(), "%04d-%02d-%02d", year, month + 1, dayOfMonth);
+                    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                    userId = currentUser.getUid();
+                    Task newTask = new Task(taskText, dueDateStr,userId);
 
-                    Task newTask = new Task(taskText, dueDateStr);
-                    db.collection("tasks")
+                    fbs.collection("tasks")
                             .add(newTask)
                             .addOnSuccessListener(documentReference -> {
                                 newTask.setId(documentReference.getId());

@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.example.loginsignup.R;
 import com.example.loginsignup.profile.ProfileFragment;
-import com.example.loginsignup.user.AddDataFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -99,13 +98,13 @@ public class LoginFragment extends Fragment {
         etUsername = getView().findViewById(R.id.etUsernameLogin);
         etPassword = getView().findViewById(R.id.etPasswordLogin);
         btnLogin = getView().findViewById(R.id.btnLoginLogin);
-        GoToAdd = getView().findViewById(R.id.GoToAddLogin);
+        /*GoToAdd = getView().findViewById(R.id.GoToAddLogin);
         GoToAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 gotoAddDataFragment();
             }
-        });
+        });*/
         tvSignupLink = getView().findViewById(R.id.tvSignupLinkLogin);
         tvSignupLink.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,11 +157,11 @@ public class LoginFragment extends Fragment {
 
     }
 
-    private void gotoAddDataFragment() {
+    /*private void gotoAddDataFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayOutMain, new ProfileFragment());
         ft.commit();
-    }
+    }*/
 
     private void gotoSignupFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();

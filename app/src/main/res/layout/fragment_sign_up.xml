@@ -230,21 +230,22 @@
             app:rippleColor="#0F0B0B" />
 
         <TextView
-            android:id="@+id/ForgotPasswordLogin"
-            android:layout_width="-10000dp"
-            android:layout_height="-1000dp"
-            android:layout_marginBottom="40dp"
+            android:id="@+id/gotoLoginSignUp"
+            android:layout_width="120dp"
+            android:layout_height="34dp"
+            android:layout_marginBottom="285dp"
+            android:background="@drawable/rounded_text"
             android:backgroundTint="#B6D19C"
             android:gravity="center"
-            android:text=""
+            android:text="Back to login"
             android:textAlignment="center"
-            android:textColor="#29311F"
 
+            android:textColor="#29311F"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/AboutUsLogin"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/circle7" />
+            />
 
         <TextView
             android:id="@+id/BackToLoginSignup"
@@ -281,7 +282,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ForgotPasswordLogin" />
+            app:layout_constraintTop_toBottomOf="@+id/gotoLoginSignUp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

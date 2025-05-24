@@ -21,6 +21,8 @@ import com.example.loginsignup.general.FirebaseServices;
 import com.example.loginsignup.general.HomePage;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 
 import java.util.Date;
@@ -37,6 +39,8 @@ public class dayRate extends Fragment {
     private TextView Addbtn;
     private FirebaseServices fbs;
     private ImageView history;
+    private String USER_ID;
+
 
 
 
@@ -114,7 +118,11 @@ public class dayRate extends Fragment {
                     return;
                 }
 
-                Rating rating = new Rating(createdDate3,seekbar1);
+                String userId = fbs.getAuth().getCurrentUser().getUid();
+                Rating rating = new Rating(createdDate3, seekbar1, userId);
+
+
+
 
                 //fbs.getAuth().createUserWithEmailAndPassword(user, pass);
 

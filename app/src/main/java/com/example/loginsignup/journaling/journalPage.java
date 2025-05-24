@@ -98,8 +98,8 @@ public class journalPage extends Fragment {
                     Toast.makeText(getActivity(), "some fields are empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-                Journal journal = new Journal(Title2,Text2,createdDateJournal);
+                String userId = fbs.getAuth().getCurrentUser().getUid();
+                Journal journal = new Journal(Title2,Text2,createdDateJournal,userId);
 
                 //fbs.getAuth().createUserWithEmailAndPassword(user, pass);
 

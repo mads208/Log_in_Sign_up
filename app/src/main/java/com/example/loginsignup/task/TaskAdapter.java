@@ -22,7 +22,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     private Context context;
     private List<Task> taskList;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseFirestore fbs = FirebaseFirestore.getInstance();
 
     public TaskAdapter(Context context, List<Task> tasks) {
         this.context = context;
@@ -47,12 +47,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         holder.doneCheck.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                // Delete task from Firestore
                 if (task.getId() != null) {
-                    db.collection("tasks").document(task.getId())
+                    fbs.collection("tasks").document(task.getId())
                             .delete()
                             .addOnSuccessListener(aVoid -> {
-                                // Remove locally & notify adapter
                                 taskList.remove(position);
                                 notifyItemRemoved(position);
                                 notifyItemRangeChanged(position, taskList.size());

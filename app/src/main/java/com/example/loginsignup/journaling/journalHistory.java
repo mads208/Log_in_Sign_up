@@ -98,7 +98,9 @@ public class journalHistory extends Fragment {
         rvJournals.setAdapter(adapterJo);
         rvJournals.setHasFixedSize(true);
         rvJournals.setLayoutManager(new LinearLayoutManager(getActivity()));
-        fbs.getFire().collection("journalData").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        fbs.getFire().collection("journalData")
+                .whereEqualTo("userId", fbs.getAuth().getCurrentUser().getUid())
+                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
