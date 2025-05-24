@@ -100,9 +100,9 @@ Have a wonderful travel."
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/roundedback"
-            app:layout_constraintEnd_toEndOf="@id/roundedback"
+            app:layout_constraintEnd_toEndOf="@+id/roundedback"
             app:layout_constraintHorizontal_bias="0.475"
-            app:layout_constraintStart_toStartOf="@id/roundedback"
+            app:layout_constraintStart_toStartOf="@+id/roundedback"
             app:layout_constraintTop_toTopOf="@id/roundedback"
             app:layout_constraintVertical_bias="0.504" />
 
@@ -117,19 +117,20 @@ Have a wonderful travel."
             android:textColor="#000000"
             android:textSize="30sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@id/roundedback"
+            app:layout_constraintBottom_toTopOf="@+id/tvSoulifyDescription"
+            app:layout_constraintEnd_toEndOf="@+id/roundedback"
             app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="@id/roundedback"
+            app:layout_constraintStart_toStartOf="@+id/roundedback"
             app:layout_constraintTop_toTopOf="@id/roundedback" />
 
         <ImageView
             android:id="@+id/starIcon2"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@drawable/star"
             android:layout_marginStart="8dp"
-            app:layout_constraintTop_toTopOf="@id/tvHeadline"
-            app:layout_constraintStart_toEndOf="@id/tvHeadline"/>
+            android:src="@drawable/star"
+            app:layout_constraintStart_toEndOf="@id/tvHeadline"
+            app:layout_constraintTop_toTopOf="@id/tvHeadline" />
 
         <ImageView
             android:id="@+id/starIconLeft"
@@ -159,13 +160,12 @@ Have a wonderful travel."
             android:layout_width="357dp"
             android:layout_height="97dp"
             android:layout_marginTop="-5dp"
-            android:layout_marginBottom="10dp"
             android:scaleType="centerCrop"
             android:src="@drawable/lowline"
-            app:layout_constraintBottom_toBottomOf="@id/roundedback"
-            app:layout_constraintEnd_toEndOf="@id/roundedback"
+            app:layout_constraintBottom_toBottomOf="@+id/roundedback"
+            app:layout_constraintEnd_toEndOf="@+id/roundedback"
             app:layout_constraintHorizontal_bias="0.461"
-            app:layout_constraintStart_toStartOf="@id/roundedback"
+            app:layout_constraintStart_toStartOf="@+id/roundedback"
             app:layout_constraintTop_toBottomOf="@id/tvSoulifyDescription"
             app:layout_constraintVertical_bias="0.0" />
 

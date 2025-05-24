@@ -10,11 +10,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ImageView
             android:id="@+id/imageView14"
             android:layout_width="72dp"
             android:layout_height="82dp"
-            android:layout_marginStart="52dp"
+            android:layout_marginStart="48dp"
             android:layout_marginTop="132dp"
             android:src="@drawable/circle"
             app:layout_constraintStart_toStartOf="parent"
@@ -22,21 +23,21 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="505dp"
-            android:layout_height="762dp"
-            android:layout_marginBottom="-50dp"
+            android:layout_width="436dp"
+            android:layout_height="682dp"
+            android:layout_marginBottom="-90dp"
             android:src="@drawable/rounded_rectangle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.52"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.88" />
+            app:layout_constraintVertical_bias="0.846" />
 
         <TextView
             android:id="@+id/doneJournal"
             android:layout_width="102dp"
             android:layout_height="40dp"
-            android:layout_marginTop="188dp"
             android:background="@drawable/rounded_text"
             android:backgroundTint="#B6D19C"
 
@@ -46,10 +47,11 @@
             android:textColor="#4D5B4F"
             android:textSize="20sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/Title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.051"
+            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
         <ImageButton
             android:id="@+id/backToHomePageJournal"
@@ -97,7 +99,7 @@
             android:id="@+id/Title"
             android:layout_width="390dp"
             android:layout_height="74dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="92dp"
             android:ems="10"
             android:fontFamily="@font/abril_fatface"
             android:hint="Title ..."
@@ -106,15 +108,15 @@
             android:textColor="#495947"
             android:textSize="40sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.053"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView3"
+            app:layout_constraintHorizontal_bias="0.391"
+            app:layout_constraintStart_toStartOf="@+id/imageView3"
             app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
         <EditText
             android:id="@+id/typingBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="408dp"
+            android:layout_height="56dp"
             android:layout_marginTop="20dp"
             android:background="@android:color/transparent"
             android:fontFamily="@font/abril_fatface"
@@ -131,11 +133,10 @@
             android:textSize="23sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView3"
+            app:layout_constraintStart_toStartOf="@+id/imageView3"
             app:layout_constraintTop_toBottomOf="@+id/Title"
-            app:layout_constraintVertical_bias="0.002" />
+            app:layout_constraintVertical_bias="0.014" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

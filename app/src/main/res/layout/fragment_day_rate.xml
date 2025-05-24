@@ -8,7 +8,7 @@
     tools:context=".DailyRating.dayRate">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
         <ImageView
@@ -23,22 +23,25 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="497dp"
-            android:layout_height="877dp"
-            android:layout_marginBottom="-80dp"
+            android:layout_width="478dp"
+            android:layout_height="786dp"
+            android:layout_marginBottom="-90dp"
             android:src="@drawable/rounded_rectangle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="160dp"
             android:layout_height="46dp"
-            android:layout_marginTop="176dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/rounded_text"
-            android:backgroundTint="#B6D19C"
 
+            android:backgroundTint="#B6D19C"
             android:gravity="center"
             android:text="Your Mood "
             android:textAlignment="center"
@@ -46,15 +49,14 @@
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
         <TextView
             android:id="@+id/doneRate"
             android:layout_width="79dp"
             android:layout_height="36dp"
-            android:layout_marginTop="176dp"
             android:background="@drawable/rounded_text"
             android:backgroundTint="#89A071"
 
@@ -64,10 +66,11 @@
             android:textColor="#4D5B4F"
             android:textSize="20sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/text1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.048"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
         <ImageButton
             android:id="@+id/backToHomePageRate"
@@ -135,7 +138,9 @@
             android:id="@+id/seekBar2"
             android:layout_width="398dp"
             android:layout_height="50dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="28dp"
+            android:layout_marginEnd="10dp"
             android:stepSize="1"
             android:valueFrom="0"
             android:valueTo="100"
@@ -149,8 +154,8 @@
             android:id="@+id/imageView13"
             android:layout_width="73dp"
             android:layout_height="68dp"
-            android:layout_marginTop="132dp"
-            android:layout_marginEnd="52dp"
+            android:layout_marginTop="84dp"
+            android:layout_marginEnd="88dp"
             android:src="@drawable/dark_circle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -159,8 +164,8 @@
             android:id="@+id/imageView12"
             android:layout_width="74dp"
             android:layout_height="66dp"
-            android:layout_marginTop="124dp"
-            android:layout_marginEnd="44dp"
+            android:layout_marginTop="88dp"
+            android:layout_marginEnd="76dp"
             android:src="@drawable/circle_dark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -169,6 +174,8 @@
             android:id="@+id/text3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:text="scroll to your preferred emoji"
             android:textColor="#486149"
             android:textSize="20sp"
